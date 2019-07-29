@@ -11,10 +11,10 @@ public class JobsappApplicationTests {
 
 	@Test
 	public void contextLoads() {
-<<<<<<< HEAD
-=======
+HEAD
+
 		
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
 
 }
