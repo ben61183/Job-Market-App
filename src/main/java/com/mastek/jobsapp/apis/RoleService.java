@@ -18,18 +18,18 @@ public class RoleService {
 	
 	@Transactional
 	public Role registerOrUpdateRole(Role role) {
-		try {
-			role = roleRepository.save(role);
-			return role; 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null; 
+		role = roleRepository.save(role);
+		return role; 
+		
 			
 	}
 	
-//	public Role findByRoleId(int roleId) {
-//		Role role = roleRepository.findById(roleId).get(); 
-//		return role;
-//	}
+	public Role findByRoleId(int roleId) {
+		Role role = roleRepository.findById(roleId).get(); 
+		return role;
+	}
+	
+	public void deleteByRoleId(int roleId) {
+		roleRepository.deleteById(roleId);
+	}
 }
