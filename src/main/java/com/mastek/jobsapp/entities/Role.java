@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,6 +14,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "JPA_ROLE")
+@NamedQueries({
+	@NamedQuery(name="Role.findByCategory", // name = "<classname>.<queryname>"
+			query="select e from Role e where e.category = :cat") // query = "object_query"
+})
 @XmlRootElement
 public class Role {
 	@Value("0")
@@ -22,18 +28,12 @@ public class Role {
 	private String roleName;
 	
 	// to be calculated from vacancy
-//	@Value("0")
-//	private int rankNow;
-//	@Value("0")
-//	private int medianSalaryNow;
-//	@Value("0")
-//	private int numVacanciesNow;
-//	@Value("0")
-//	private int rankLast;
-//	@Value("0")
-//	private int medianSalaryLast;
-//	@Value("0")
-//	private int numVacanciesLast;
+	private int rankNow;
+	private int medianSalaryNow;
+	private int numVacanciesNow;
+	private int rankLast;
+	private int medianSalaryLast;
+	private int numVacanciesLast;
 	
 	public Role() {
 		System.out.println("new role created");
@@ -69,6 +69,55 @@ public class Role {
 	}
 
 	// end of tabulated results
+
+	public int getRankNow() {
+		return rankNow;
+	}
+
+	public void setRankNow(int rankNow) {
+		this.rankNow = rankNow;
+	}
+
+	public int getMedianSalaryNow() {
+		return medianSalaryNow;
+	}
+
+	public void setMedianSalaryNow(int medianSalaryNow) {
+		this.medianSalaryNow = medianSalaryNow;
+	}
+
+	public int getNumVacanciesNow() {
+		return numVacanciesNow;
+	}
+
+	public void setNumVacanciesNow(int numVacanciesNow) {
+		this.numVacanciesNow = numVacanciesNow;
+	}
+
+	public int getRankLast() {
+		return rankLast;
+	}
+
+	public void setRankLast(int rankLast) {
+		this.rankLast = rankLast;
+	}
+
+	public int getMedianSalaryLast() {
+		return medianSalaryLast;
+	}
+
+	public void setMedianSalaryLast(int medianSalaryLast) {
+		this.medianSalaryLast = medianSalaryLast;
+	}
+
+	public int getNumVacanciesLast() {
+		return numVacanciesLast;
+	}
+
+	public void setNumVacanciesLast(int numVacanciesLast) {
+		this.numVacanciesLast = numVacanciesLast;
+	}
+
 	
 	
 	

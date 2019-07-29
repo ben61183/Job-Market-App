@@ -1,6 +1,9 @@
 package com.mastek.jobsapp;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +35,13 @@ public class RoleTests {
 		role1 = rolSer.registerOrUpdateRole(role1);
 		
 		assertNotNull(role1);
+	}
+	
+	@Test
+	public void findByCat() {
+		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
+		System.out.println("test roles:"+rolesOfCategory);
+		assertTrue(rolesOfCategory.size()>0);
 	}
 	
 }

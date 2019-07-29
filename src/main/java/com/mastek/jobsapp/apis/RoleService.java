@@ -1,6 +1,9 @@
 package com.mastek.jobsapp.apis;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,14 +21,13 @@ public class RoleService {
 	
 	@Transactional
 	public Role registerOrUpdateRole(Role role) {
-		try {
-			role = roleRepository.save(role);
-			return role; 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null; 
-			
+		role = roleRepository.save(role);
+		return role; 
+		
+	}
+	
+	public List<Role> fetchRoleByCat(@QueryParam("cat") String cat){
+		return roleRepository.findByCategory(cat);
 	}
 	
 //	public Role findByRoleId(int roleId) {
