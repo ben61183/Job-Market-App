@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +20,6 @@ import org.springframework.stereotype.Component;
 	@Entity // declares as an entity
 	@Table(name="JPA_Vacancy")// declaring the table name for the class
 	public class Vacancy implements Serializable {
-		
 		
 		
 			@Value("-1")
@@ -38,6 +39,9 @@ import org.springframework.stereotype.Component;
 			@Value("Default Time")
 			private String postTime;
 			private boolean jobType;
+			
+			private Role thisRole;
+			
 			// One department has many Employees
 //			private Set<Employee> members = new HashSet<>();
 			
@@ -56,109 +60,117 @@ import org.springframework.stereotype.Component;
 //				this.members = members;
 //			}
 //			
-			@Id //declare the property as Primary Key
-			@Column(name="vacancy_id")//declare the column name
-			@GeneratedValue(strategy=GenerationType.AUTO) //auto-numbering the primary key
-			public int getVacancyId() {
-				return vacancyId;
-			}
+	@Id //declare the property as Primary Key
+	@Column(name="vacancy_id")//declare the column name
+	@GeneratedValue(strategy=GenerationType.AUTO) //auto-numbering the primary key
+	public int getVacancyId() {
+		return vacancyId;
+	}
 
-			public void setVacancyId(int vacancyId) {
-				this.vacancyId = vacancyId;
-			}
-			
-			@Column(name="title", nullable= false, length=45)
-			public String getTitle() {
-				return title;
-			}
+	public void setVacancyId(int vacancyId) {
+		this.vacancyId = vacancyId;
+	}
+	
+	@Column(name="title", nullable= false, length=45)
+	public String getTitle() {
+		return title;
+	}
 
-			
-			public void setTitle(String title) {
-				this.title = title;
-			}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-			@Column(name="salary", nullable= false, length=45)
-			public int getSalary() {
-				return salary;
-			}
+	@Column(name="salary", nullable= false, length=45)
+	public int getSalary() {
+		return salary;
+	}
 
-			public void setSalary(int salary) {
-				this.salary = salary;
-			}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
 
-			@Column(name="location", nullable= false, length=45)
-			public String getLocation() {
-				return location;
-			}
+	@Column(name="location", nullable= false, length=45)
+	public String getLocation() {
+		return location;
+	}
 
-			public void setLocation(String location) {
-				this.location = location;
-			}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
-			@Column(name="description", nullable= false, length=45)
-			public String getDescription() {
-				return description;
-			}
+	@Column(name="description", nullable= false, length=45)
+	public String getDescription() {
+		return description;
+	}
 
-			public void setDescription(String description) {
-				this.description = description;
-			}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-			@Column(name="company", nullable= false, length=45)
-			public String getCompany() {
-				return company;
-			}
+	@Column(name="company", nullable= false, length=45)
+	public String getCompany() {
+		return company;
+	}
 
-			public void setCompany(String company) {
-				this.company = company;
-			}
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
-			@Column(name="link", nullable= false, length=45)
-			public String getLink() {
-				return link;
-			}
+	@Column(name="link", nullable= false, length=45)
+	public String getLink() {
+		return link;
+	}
 
-			public void setLink(String link) {
-				this.link = link;
-			}
+	public void setLink(String link) {
+		this.link = link;
+	}
 
-			@Column(name="post_time", nullable= false, length=45)
-			public String getPostTime() {
-				return postTime;
-			}
+	@Column(name="post_time", nullable= false, length=45)
+	public String getPostTime() {
+		return postTime;
+	}
 
-			public void setPostTime(String postTime) {
-				this.postTime = postTime;
-			}
+	public void setPostTime(String postTime) {
+		this.postTime = postTime;
+	}
 
-			@Column(name="job_type", nullable= false, length=45)
-			public boolean isJobType() {
-				return jobType;
-			}
+	@Column(name="job_type", nullable= false, length=45)
+	public boolean isJobType() {
+		return jobType;
+	}
 
-			public void setJobType(boolean jobType) {
-				this.jobType = jobType;
-			}
+	public void setJobType(boolean jobType) {
+		this.jobType = jobType;
+	}
 
 
-			
-				public Vacancy() {
-				System.out.println("Vacancy Created");
-			}
+	
+		public Vacancy() {
+		System.out.println("Vacancy Created");
+	}
+		
+	@ManyToOne
+	@JoinColumn(name="fk_role")
+	public Role getThisRole() {
+		return thisRole;
+	}
 
-				@Override
-				public String toString() {
-					return "Vacancy [getVacancyId()=" + getVacancyId() + ", getTitle()=" + getTitle() + ", getSalary()="
-							+ getSalary() + ", getLocation()=" + getLocation() + ", getDescription()="
-							+ getDescription() + ", getCompany()=" + getCompany() + ", getLink()=" + getLink()
-							+ ", getPostTime()=" + getPostTime() + ", isJobType()=" + isJobType() + "]";
-				}
+	public void setThisRole(Role thisRole) {
+		this.thisRole = thisRole;
+	}
 
-				
-			
+	@Override
+	public String toString() {
+		return "Vacancy [getVacancyId()=" + getVacancyId() + ", getTitle()=" + getTitle() + ", getSalary()="
+				+ getSalary() + ", getLocation()=" + getLocation() + ", getDescription()="
+				+ getDescription() + ", getCompany()=" + getCompany() + ", getLink()=" + getLink()
+				+ ", getPostTime()=" + getPostTime() + ", isJobType()=" + isJobType() + "]";
+	}
 
 		
-	}	
+	
+}	
 		
 		
 		

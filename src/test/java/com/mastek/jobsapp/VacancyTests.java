@@ -19,7 +19,6 @@ import com.mastek.jobsapp.entities.Vacancy;
 @SpringBootTest
 public class VacancyTests {
 
-<<<<<<< HEAD
 	@Autowired
 	VacancyService vacSer;
 	
@@ -39,16 +38,6 @@ public class VacancyTests {
 		vac=vacSer.registerOrUpdateVacancy(vac);
 		assertNotNull(vac);
 	}
-
-//	@Autowired
-//	VacancyService vacSer;
-//	
-//	@Test
-//	public void test() {
-//		fail("Not yet implemented");
-//	}
-	//sda
-branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 }
 

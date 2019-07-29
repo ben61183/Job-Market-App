@@ -38,15 +38,7 @@ public class Role {
 	
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
-	// to be calculated from vacancy
-	private int rankNow;
-	private int medianSalaryNow;
-	private int numVacanciesNow;
-	private int rankLast;
-	private int medianSalaryLast;
-	private int numVacanciesLast;
-	
-	
+
 	public Role() {
 		System.out.println("new role created");
 	}
@@ -92,57 +84,6 @@ public class Role {
 	}
 	
 	
-	
-	// end of tabulated results
-
-
-	public int getRankNow() {
-		return rankNow;
-	}
-
-	public void setRankNow(int rankNow) {
-		this.rankNow = rankNow;
-	}
-
-	public int getMedianSalaryNow() {
-		return medianSalaryNow;
-	}
-
-	public void setMedianSalaryNow(int medianSalaryNow) {
-		this.medianSalaryNow = medianSalaryNow;
-	}
-
-	public int getNumVacanciesNow() {
-		return numVacanciesNow;
-	}
-
-	public void setNumVacanciesNow(int numVacanciesNow) {
-		this.numVacanciesNow = numVacanciesNow;
-	}
-
-	public int getRankLast() {
-		return rankLast;
-	}
-
-	public void setRankLast(int rankLast) {
-		this.rankLast = rankLast;
-	}
-
-	public int getMedianSalaryLast() {
-		return medianSalaryLast;
-	}
-
-	public void setMedianSalaryLast(int medianSalaryLast) {
-		this.medianSalaryLast = medianSalaryLast;
-	}
-
-	public int getNumVacanciesLast() {
-		return numVacanciesLast;
-	}
-
-	public void setNumVacanciesLast(int numVacanciesLast) {
-		this.numVacanciesLast = numVacanciesLast;
-	}
 
 	
 	

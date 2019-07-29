@@ -10,11 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class JobsappApplicationTests {
 
 	@Test
-	public void contextLoads() {
-HEAD
+	public void contextLoads() {		
 
-		
-branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
 
 }
