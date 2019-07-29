@@ -39,7 +39,7 @@ public class VacancyTests {
 		vac=vacSer.registerOrUpdateVacancy(vac);
 		assertNotNull(vac);
 	}
-=======
+
 //	@Autowired
 //	VacancyService vacSer;
 //	
@@ -47,7 +47,8 @@ public class VacancyTests {
 //	public void test() {
 //		fail("Not yet implemented");
 //	}
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+	//sda
+branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 }
 
