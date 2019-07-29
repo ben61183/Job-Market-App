@@ -12,6 +12,7 @@ public class JobsappApplicationTests {
 	@Test
 	public void contextLoads() {
 		int x;
+		int y;
 	}
 
 }
