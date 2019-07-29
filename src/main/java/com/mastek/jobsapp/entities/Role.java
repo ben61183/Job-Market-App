@@ -12,6 +12,10 @@ public class Role {
 	private int roleID;
 	@Value("defult")
 	private String category;
+	@Value("defult")
+	private String roleName;
+	
+	// to be calculated from vacancy
 	@Value("0")
 	private int rankNow;
 	@Value("0")
@@ -47,6 +51,15 @@ public class Role {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	@Column(name="roleName",nullable=false)
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	// end of tabulated results
