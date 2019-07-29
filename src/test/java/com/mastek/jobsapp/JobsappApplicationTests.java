@@ -10,17 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class JobsappApplicationTests {
 
 	@Test
-<<<<<<< HEAD
 	public void contextLoads() {
 
-=======
-	public void contextLoads() {		
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
-
-<<<<<<< HEAD
-		
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
 
 }

@@ -1,15 +1,12 @@
 package com.mastek.jobsapp.entities;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 
-=======
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,12 +42,7 @@ public class Role implements Serializable {
 	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
-	
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
 
@@ -88,9 +80,6 @@ public class Role implements Serializable {
 	}
 	
 
-<<<<<<< HEAD
-
-=======
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {
@@ -102,7 +91,6 @@ public class Role implements Serializable {
 	}
 	
 	
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 	
 	
