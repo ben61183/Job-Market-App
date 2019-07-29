@@ -39,6 +39,7 @@ public class VacancyTests {
 		assertNotNull(vac);
 	}
 
+<<<<<<< HEAD
 //	@Autowired
 //	VacancyService vacSer;
 //	
@@ -48,6 +49,8 @@ public class VacancyTests {
 //	}
 	//sda
 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 }
 
 

@@ -1,17 +1,28 @@
 package com.mastek.jobsapp.entities;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 
+=======
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -34,8 +45,15 @@ public class Role implements Serializable {
 	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
+<<<<<<< HEAD
 
+=======
 	
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+	
+	private Set<Vacancy> roleVacancies = new HashSet<>();
+	
+
 	public Role() {
 		System.out.println("new role created");
 	}
@@ -68,8 +86,23 @@ public class Role implements Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	
 
+<<<<<<< HEAD
 
+=======
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
+	@XmlTransient // ignore the collections while using API
+	public Set<Vacancy> getRoleVacancies() {
+		return roleVacancies;
+	}
+
+	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
+		this.roleVacancies = roleVacancies;
+	}
+	
+	
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 	
 	
