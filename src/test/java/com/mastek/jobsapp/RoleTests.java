@@ -44,4 +44,5 @@ public class RoleTests {
 		assertTrue(rolesOfCategory.size()>0);
 	}
 	
+
 }
