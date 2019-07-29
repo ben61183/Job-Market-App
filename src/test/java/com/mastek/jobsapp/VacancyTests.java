@@ -13,12 +13,12 @@ import com.mastek.jobsapp.apis.VacancyService;
 
 public class VacancyTests {
 
-	@Autowired
-	VacancyService vacSer;
-	
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+//	@Autowired
+//	VacancyService vacSer;
+//	
+//	@Test
+//	public void test() {
+//		fail("Not yet implemented");
+//	}
 
 }
