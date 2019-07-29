@@ -20,7 +20,7 @@ import com.mastek.jobsapp.repositories.VacancyRepository;
 @Scope("singleton")
 @Path("/vacancy/")
 public class VacancyService {
-		
+		// o
 		@Autowired
 		private VacancyRepository vacancyRepository;
 		
