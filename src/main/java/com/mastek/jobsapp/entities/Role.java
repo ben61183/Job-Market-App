@@ -70,53 +70,7 @@ public class Role {
 
 	// end of tabulated results
 	
-	public int getRankNow() {
-		return rankNow;
-	}
-
-	public void setRankNow(int rankNow) {
-		this.rankNow = rankNow;
-	}
-
-	public int getMedianSalaryNow() {
-		return medianSalaryNow;
-	}
-
-	public void setMedianSalaryNow(int medianSalaryNow) {
-		this.medianSalaryNow = medianSalaryNow;
-	}
-
-	public int getNumVacanciesNow() {
-		return numVacanciesNow;
-	}
-
-	public void setNumVacanciesNow(int numVacanciesNow) {
-		this.numVacanciesNow = numVacanciesNow;
-	}
-
-	public int getRankLast() {
-		return rankLast;
-	}
-
-	public void setRankLast(int rankLast) {
-		this.rankLast = rankLast;
-	}
-
-	public int getMedianSalaryLast() {
-		return medianSalaryLast;
-	}
-
-	public void setMedianSalaryLast(int medianSalaryLast) {
-		this.medianSalaryLast = medianSalaryLast;
-	}
-
-	public int getNumVacanciesLast() {
-		return numVacanciesLast;
-	}
-
-	public void setNumVacanciesLast(int numVacanciesLast) {
-		this.numVacanciesLast = numVacanciesLast;
-	}
+	
 	
 	
 }
