@@ -1,5 +1,7 @@
 package com.mastek.jobsapp.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,8 @@ public class Role {
 	@Value("defult")
 	private String roleName;
 	
+	private Set<>
+	
 	// to be calculated from vacancy
 	private int rankNow;
 	private int medianSalaryNow;
@@ -34,6 +38,7 @@ public class Role {
 	private int rankLast;
 	private int medianSalaryLast;
 	private int numVacanciesLast;
+	
 	
 	public Role() {
 		System.out.println("new role created");
