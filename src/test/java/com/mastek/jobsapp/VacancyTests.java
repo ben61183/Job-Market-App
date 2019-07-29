@@ -39,6 +39,18 @@ public class VacancyTests {
 		assertNotNull(vac);
 	}
 
+<<<<<<< HEAD
+//	@Autowired
+//	VacancyService vacSer;
+//	
+//	@Test
+//	public void test() {
+//		fail("Not yet implemented");
+//	}
+	//sda
+
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 }
 
 
