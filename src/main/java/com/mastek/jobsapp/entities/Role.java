@@ -1,16 +1,22 @@
 package com.mastek.jobsapp.entities;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -29,7 +35,8 @@ public class Role {
 	@Value("defult")
 	private String roleName;
 	
-	private Set<Vacancy>
+	
+	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
 	// to be calculated from vacancy
 	private int rankNow;
@@ -72,8 +79,22 @@ public class Role {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
+	
 
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
+	@XmlTransient // ignore the collections while using API
+	public Set<Vacancy> getRoleVacancies() {
+		return roleVacancies;
+	}
+
+	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
+		this.roleVacancies = roleVacancies;
+	}
+	
+	
+	
 	// end of tabulated results
+
 
 	public int getRankNow() {
 		return rankNow;

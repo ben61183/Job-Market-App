@@ -1,13 +1,10 @@
 package com.mastek.jobsapp;
 
 import static org.junit.Assert.assertNotNull;
-<<<<<<< HEAD
 import static org.junit.Assert.assertNull;
-=======
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,13 +45,11 @@ public class RoleTests {
 //	}
 	
 	@Test
-<<<<<<< HEAD
 	public void deleteByRoleId() {
 		int roleid = 9; 
 		rolSer.deleteByRoleId(roleid);
 		//assertNull(rolSer.findByRoleId(roleid));
 	}
-=======
 	public void findByCat() {
 		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
 		System.out.println("test roles:"+rolesOfCategory);
@@ -62,5 +57,4 @@ public class RoleTests {
 	}
 	
 
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 }
