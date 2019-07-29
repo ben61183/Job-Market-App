@@ -3,10 +3,13 @@ package com.mastek.jobsapp.apis;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -31,26 +34,26 @@ public class RoleService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // form data
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
-	public Role registerOrUpdateRole(Role role) {
+	public Role registerOrUpdateRole(@BeanParam Role role) {
 		role = roleRepository.save(role);
 		return role; 
-		
-<<<<<<< HEAD
-			
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
-	
-<<<<<<< HEAD
-	public Role findByRoleId(int roleId) {
+
+	@Path("/find/{roleid}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Transactional
+	public Role findByRoleId(@PathParam("roleid") int roleId) {
 		Role role = roleRepository.findById(roleId).get(); 
 		return role;
 	}
 	
-	public void deleteByRoleId(int roleId) {
+	@DELETE
+	@Path("/delete/{roleid}")
+	public void deleteByRoleId(@PathParam("roleid") int roleId) {
 		roleRepository.deleteById(roleId);
 	}
-=======
+
 	@Path("/fetch_category")
 	@GET // http method used to call the api
 	@Produces({ // declare all possible content types of return value
@@ -66,5 +69,5 @@ public class RoleService {
 //		Role role = roleRepository.findById(roleId).get(); 
 //		return role;
 //	}
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+
 }
