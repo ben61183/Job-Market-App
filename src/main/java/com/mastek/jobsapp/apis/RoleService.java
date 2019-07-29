@@ -35,8 +35,22 @@ public class RoleService {
 		role = roleRepository.save(role);
 		return role; 
 		
+<<<<<<< HEAD
+			
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
 	
+<<<<<<< HEAD
+	public Role findByRoleId(int roleId) {
+		Role role = roleRepository.findById(roleId).get(); 
+		return role;
+	}
+	
+	public void deleteByRoleId(int roleId) {
+		roleRepository.deleteById(roleId);
+	}
+=======
 	@Path("/fetch_category")
 	@GET // http method used to call the api
 	@Produces({ // declare all possible content types of return value
@@ -52,4 +66,5 @@ public class RoleService {
 //		Role role = roleRepository.findById(roleId).get(); 
 //		return role;
 //	}
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 }
