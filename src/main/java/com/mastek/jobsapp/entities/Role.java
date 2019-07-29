@@ -29,7 +29,7 @@ public class Role {
 	@Value("defult")
 	private String roleName;
 	
-	private Set<>
+	private Set<Vacancy>
 	
 	// to be calculated from vacancy
 	private int rankNow;
