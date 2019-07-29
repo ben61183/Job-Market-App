@@ -1,5 +1,7 @@
 package com.mastek.jobsapp.apis;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -14,10 +16,15 @@ public class RoleService {
 	@Autowired
 	private RoleRepository roleRepository; 
 	
-	@Autowired
+	@Transactional
 	public Role registerOrUpdateRole(Role role) {
-		role = roleRepository.save(role);
-		return role;
+		try {
+			role = roleRepository.save(role);
+			return role; 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null; 
 			
 	}
 	
