@@ -13,7 +13,9 @@ public class RoleTests {
 	@Test
 	public void addNewRole() {
 		Role role1 = new Role();
-		role1.set
+		role1.setCategory("application platforms");
+		role1.setRoleName("SharePoint");
+		
 	}
 	
 }
