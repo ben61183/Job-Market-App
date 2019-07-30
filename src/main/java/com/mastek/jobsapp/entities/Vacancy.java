@@ -117,7 +117,7 @@ import org.springframework.stereotype.Component;
 		this.company = company;
 	}
 
-	@Column(name="link", nullable= false, length=45)
+	@Column(name="link", nullable= false, length=100)
 	public String getLink() {
 		return link;
 	}
