@@ -39,12 +39,14 @@ public class RoleService {
 		return role; 
 	}
 
+
 	@Path("/find/{roleid}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
 	public Role findByRoleId(@PathParam("roleid") int roleId) {
 		Role role = roleRepository.findById(roleId).get(); 
+	
 		return role;
 	}
 	
@@ -53,6 +55,7 @@ public class RoleService {
 	public void deleteByRoleId(@PathParam("roleid") int roleId) {
 		roleRepository.deleteById(roleId);
 	}
+
 	@Path("/fetch_category")
 	@GET // http method used to call the api
 	@Produces({ // declare all possible content types of return value
@@ -61,7 +64,5 @@ public class RoleService {
 	public List<Role> fetchRoleByCat(@QueryParam("cat") String cat){
 		return roleRepository.findByCategory(cat);
 	}
-	
-	
 
 }
