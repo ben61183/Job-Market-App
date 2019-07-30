@@ -1,24 +1,24 @@
-<<<<<<< HEAD
-//package com.mastek.jobsapp;
-//
-//import org.junit.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//
-//import com.mastek.jobsapp.apis.RoleService;
-//import com.mastek.jobsapp.entities.Role;
-//
-//public class RoleTests {
-//	@Autowired
-//	RoleService rolSer;
-//	
-//	@Test
-//	public void addNewRole() {
-//		Role role1 = new Role();
-//		role1.set
-//	}
-//	
-//}
-=======
+
+package com.mastek.jobsapp;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mastek.jobsapp.apis.RoleService;
+import com.mastek.jobsapp.entities.Role;
+
+public class RoleTests {
+	@Autowired
+	RoleService rolSer;
+	
+	@Test
+	public void addNewRole() {
+		Role role1 = new Role();
+		role1.set
+	}
+	
+}
+
 package com.mastek.jobsapp;
 
 import static org.junit.Assert.assertNotNull;
@@ -52,7 +52,7 @@ public class RoleTests {
 		System.out.println("Role Tests Loaded");
 	}
 	
-<<<<<<< HEAD
+
 	//@Autowired
 	@Test
 	public void addNewRole() {
@@ -61,7 +61,7 @@ public class RoleTests {
 		role1.setRoleName("SQL");
 		role1.setCategory("Test");
 		role1 = rolSer.registerOrUpdateRole(role1);
-=======
+
 	@Test
 	public void addNewRole() {
 
@@ -74,26 +74,22 @@ public class RoleTests {
 		role2.setRoleName("Python");
 		role2.setCategory("Cloud Services");
 		role2 = rolSer.registerOrUpdateRole(role2);
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
-		
 		assertNotNull(role1);
 	}
 	
 	@Test
 	public void findByRoleId() {
-<<<<<<< HEAD
 		int roleid = 4; 
 		assertNotNull(rolSer.findByRoleId(roleid));
 	}
 	
-=======
 		int roleid = 11; 
 		assertNotNull(rolSer.findByRoleId(roleid));
 	}
 
 	// add back later
 	@Ignore
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+
 	@Test
 	public void deleteByRoleId() {
 		int roleid = 12; 
