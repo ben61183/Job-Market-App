@@ -35,18 +35,18 @@ public class RoleService {
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
 	public Role registerOrUpdateRole(@BeanParam Role role) {
+		
 		role = roleRepository.save(role);
+
 		return role; 
 	}
-
-
+	
 	@Path("/find/{roleid}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
 	public Role findByRoleId(@PathParam("roleid") int roleId) {
 		Role role = roleRepository.findById(roleId).get(); 
-	
 		return role;
 	}
 	
@@ -64,6 +64,8 @@ public class RoleService {
 	public List<Role> fetchRoleByCat(@QueryParam("cat") String cat){
 		return roleRepository.findByCategory(cat);
 	}
+
+	
 
 	@GET
 	@Path("/list")

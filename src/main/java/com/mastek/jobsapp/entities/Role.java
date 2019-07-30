@@ -1,5 +1,7 @@
 package com.mastek.jobsapp.entities;
+
 import java.io.Serializable;
+
 
 import java.util.HashSet;
 import java.util.List;
@@ -41,7 +43,7 @@ public class Role implements Serializable {
 	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
-
+	
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
 	public Role() {
@@ -76,8 +78,6 @@ public class Role implements Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-	
-
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {
@@ -87,6 +87,5 @@ public class Role implements Serializable {
 	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
 		this.roleVacancies = roleVacancies;
 	}
-	
 	
 }

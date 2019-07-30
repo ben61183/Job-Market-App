@@ -26,6 +26,8 @@ package com.mastek.jobsapp;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,6 +39,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mastek.jobsapp.apis.VacancyService;
+import com.mastek.jobsapp.entities.Role;
 import com.mastek.jobsapp.entities.Vacancy;
 
 @RunWith(SpringRunner.class)
@@ -62,15 +65,18 @@ public class VacancyTests {
 		assertNotNull(vac);
 	}
 
-//	@Autowired
-//	VacancyService vacSer;
-//	
+	@Test
+	public void findByVacancyById() {
+		int vacancyId = 3; 
+		assertNotNull(vacSer.findByVacanyId(vacancyId));
+	}
+	
 //	@Test
-//	public void test() {
-//		fail("Not yet implemented");
+//	public void deleteByVacancyId() {
+//		int vacancyId = 4; 
+//		vacSer.deleteByVacancyId(vacancyId);
+//		assertNull(vacSer.findByVacanyId(vacancyId));
 //	}
-	//sda
 
+	
 }
-
-
