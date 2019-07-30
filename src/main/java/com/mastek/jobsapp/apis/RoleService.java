@@ -37,22 +37,13 @@ public class RoleService {
 	public Role registerOrUpdateRole(@BeanParam Role role) {
 		role = roleRepository.save(role);
 		return role; 
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
-<<<<<<< HEAD
 
 	@Path("/find/{roleid}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
 	public Role findByRoleId(@PathParam("roleid") int roleId) {
-=======
-	
-	public Role findByRoleId(int roleId) {
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 		Role role = roleRepository.findById(roleId).get(); 
 		return role;
 	}
@@ -62,10 +53,6 @@ public class RoleService {
 	public void deleteByRoleId(@PathParam("roleid") int roleId) {
 		roleRepository.deleteById(roleId);
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Path("/fetch_category")
 	@GET // http method used to call the api
 	@Produces({ // declare all possible content types of return value
@@ -75,14 +62,6 @@ public class RoleService {
 		return roleRepository.findByCategory(cat);
 	}
 	
-<<<<<<< HEAD
 	
 
-//	public Role findByRoleId(int roleId) {
-//		Role role = roleRepository.findById(roleId).get(); 
-//		return role;
-//	}
-
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 }

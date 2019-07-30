@@ -45,7 +45,6 @@ public class Role implements Serializable {
 
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
-
 	public Role() {
 		System.out.println("new role created");
 	}
