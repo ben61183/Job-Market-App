@@ -99,7 +99,7 @@ import org.springframework.stereotype.Component;
 		this.location = location;
 	}
 
-	@Column(name="description", nullable= false, length=45)
+	@Column(name="description", nullable= false, length=150)
 	public String getDescription() {
 		return description;
 	}
