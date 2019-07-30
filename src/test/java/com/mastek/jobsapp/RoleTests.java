@@ -1,7 +1,15 @@
+
 package com.mastek.jobsapp;
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mastek.jobsapp.apis.RoleService;
+import com.mastek.jobsapp.entities.Role;	
 import static org.junit.Assert.assertNotNull;
+
 import static org.junit.Assert.assertNull;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -21,8 +29,10 @@ import com.mastek.jobsapp.entities.Vacancy;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RoleTests {
+	
 	@Autowired
 	RoleService rolSer;
+	
 	@Autowired
 	VacancyService vacSer;
 	
@@ -32,6 +42,17 @@ public class RoleTests {
 	}
 	
 
+<<<<<<< HEAD
+=======
+
+//	@Test
+//	public void findByRoleId() {
+//		int roleid = 4; 
+//		assertNotNull(rolSer.findByRoleId(roleid));
+//	}
+
+
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Test
 	public void addNewRole() {
 
@@ -44,19 +65,33 @@ public class RoleTests {
 		role2.setRoleName("Python");
 		role2.setCategory("Cloud Services");
 		role2 = rolSer.registerOrUpdateRole(role2);
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 		
 		assertNotNull(role1);
 	}
-	
+
+
+
 	@Test
 	public void findByRoleId() {
 
+<<<<<<< HEAD
 		int roleid = 11; 
+=======
+		int roleid = 4; 
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 		assertNotNull(rolSer.findByRoleId(roleid));
 	}
 
+<<<<<<< HEAD
 	// add back later
 	@Ignore
+=======
+	// add back later
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Test
 	public void deleteByRoleId() {
 		int roleid = 12; 
@@ -64,13 +99,19 @@ public class RoleTests {
 		//assertNull(rolSer.findByRoleId(roleid));
 	}
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	public void findByCat() {
 		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
 		System.out.println("test roles:"+rolesOfCategory);
 		assertTrue(rolesOfCategory.size()>0);
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 	@Test
 	public void assignRole() {
@@ -91,6 +132,8 @@ public class RoleTests {
 		vac.setThisRole(role2);
 		vac = vacSer.registerOrUpdateVacancy(vac);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 }
-
-

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -19,25 +21,36 @@ import org.springframework.stereotype.Component;
 	@Scope("prototype") //one copy for each test
 	@Entity // declares as an entity
 	@Table(name="JPA_Vacancy")// declaring the table name for the class
+	@XmlRootElement
 	public class Vacancy implements Serializable {
 		
 		
 			@Value("-1")
+			@FormParam("vacancyId")
 			private int vacancyId;
 			@Value("Default Vacancy Title")
+			@FormParam("title")
 			private String title;
 			@Value("-1")
+			@FormParam("salary")
 			private int salary;
 			@Value("Default Vacancy location")
+			@FormParam("location")
 			private String location;
 			@Value("Default description")
+			@FormParam("description")
 			private String description;
 			@Value("Default company")
+			@FormParam("company")
 			private String company;
 			@Value("Default link")
+			@FormParam("link")
 			private String link;
 			@Value("Default Time")
+			@FormParam("postTime")
 			private String postTime;
+			@Value("true")
+			@FormParam("jobType")
 			private boolean jobType;
 			
 			private Role thisRole;
