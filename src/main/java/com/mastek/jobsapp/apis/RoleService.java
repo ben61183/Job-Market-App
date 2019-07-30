@@ -65,4 +65,11 @@ public class RoleService {
 		return roleRepository.findByCategory(cat);
 	}
 
+	@GET
+	@Path("/list")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Iterable<Role> listAllRoles(){
+		// fetch all departments from the table
+		return roleRepository.findAll();
+	}
 }

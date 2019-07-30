@@ -8,6 +8,8 @@ public class APIConfig extends ResourceConfig{
 	public APIConfig(){
 		register(RoleService.class);
 		register(VacancyService.class);
+		register(UserDetailsService.class);
+		
 		register(CORSFilter.class);
 	}
 }
