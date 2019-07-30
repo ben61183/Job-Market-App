@@ -1,13 +1,12 @@
-package com.mastek.jobsapp;
+/*package com.mastek.jobsapp;
 
 import static org.junit.Assert.assertNotNull;
-<<<<<<< HEAD
 import static org.junit.Assert.assertNull;
-=======
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,36 +30,36 @@ public class RoleTests {
 	
 //	//@Autowired
 //	@Test
-//	public void addNewRole() {
-//		Role role1 = new Role();
+	public void addNewRole() {
+		Role role1 = new Role();
 //		role1.setRoleID(1);
-//		role1.setRoleName("SQL");
-//		role1.setCategory("Test");
-//		role1 = rolSer.registerOrUpdateRole(role1);
-//		
-//		assertNotNull(role1);
-//	}
-//	
+		role1.setRoleName("SQL");
+		role1.setCategory("Test");
+		role1 = rolSer.registerOrUpdateRole(role1);
+		
+		assertNotNull(role1);
+	}
+	
 //	@Test
 //	public void findByRoleId() {
 //		int roleid = 4; 
 //		assertNotNull(rolSer.findByRoleId(roleid));
 //	}
 	
-	@Test
-<<<<<<< HEAD
-	public void deleteByRoleId() {
-		int roleid = 9; 
-		rolSer.deleteByRoleId(roleid);
-		//assertNull(rolSer.findByRoleId(roleid));
-	}
-=======
-	public void findByCat() {
-		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
-		System.out.println("test roles:"+rolesOfCategory);
-		assertTrue(rolesOfCategory.size()>0);
-	}
+//	@Test
+//	public void deleteByRoleId() {
+//		int roleid = 9; 
+//		rolSer.deleteByRoleId(roleid);
+//		//assertNull(rolSer.findByRoleId(roleid));
+//	}
+
+//	public void findByCat() {
+//		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
+//		System.out.println("test roles:"+rolesOfCategory);
+//		assertTrue(rolesOfCategory.size()>0);
+//	}
 	
 
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+
 }
+*/
