@@ -11,5 +11,4 @@ public class APIConfig extends ResourceConfig{
 		register(VacancyService.class);
 		register(CORSFilter.class);
 	}
-
 }

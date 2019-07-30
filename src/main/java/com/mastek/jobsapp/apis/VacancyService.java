@@ -8,6 +8,11 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -15,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.mastek.jobsapp.entities.Role;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.VacancyRepository;
 
@@ -22,11 +28,15 @@ import com.mastek.jobsapp.repositories.VacancyRepository;
 @Scope("singleton")
 @Path("/vacancy/")
 public class VacancyService {
-		
-		
+		// o
 		@Autowired
 		private VacancyRepository vacancyRepository;
+
+		@Autowired
+		private RoleService rolSer;
 		
+//		
+//		private Team currentTeam;
 
 		
 		public VacancyService() {
@@ -66,6 +76,37 @@ public class VacancyService {
 			vacancyRepository.deleteById(vacancyId);
 		}
 
-	}
+
+//		@ManyToOne
+//		@JoinColumn(name="FK_Team_id")
+//		public Team getCurrentTeam() {
+//			return currentTeam;
+//		}
+//
+//		public void setCurrentTeam(Team currentTeam) {
+//			this.currentTeam = currentTeam;
+//		}
+
+		
+	@Transactional
+	@POST
+	@Path("/assign/role")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Vacancy assignRole(@FormParam("roleId") int roleId, @FormParam("vacancyId") int vacancyId) {
+		try {
+			Vacancy vac = findByVacanyId(vacancyId);
+			Role rol = rolSer.findByRoleId(roleId);
+			vac.setThisRole(rol);
+			vac = registerOrUpdateVacancy(vac);
+			return vac;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+			
+		}
+
+}
 
 

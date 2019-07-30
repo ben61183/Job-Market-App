@@ -3,10 +3,13 @@ package com.mastek.jobsapp.apis;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -31,20 +34,25 @@ public class RoleService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // form data
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
-	public Role registerOrUpdateRole(Role role) {
+	public Role registerOrUpdateRole(@BeanParam Role role) {
 		role = roleRepository.save(role);
 		return role; 
-		
-
 	}
 	
 
-	public Role findByRoleId(int roleId) {
+	@Path("/find/{roleid}")
+	@GET
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Transactional
+	public Role findByRoleId(@PathParam("roleid") int roleId) {
 		Role role = roleRepository.findById(roleId).get(); 
+	
 		return role;
 	}
 	
-	public void deleteByRoleId(int roleId) {
+	@DELETE
+	@Path("/delete/{roleid}")
+	public void deleteByRoleId(@PathParam("roleid") int roleId) {
 		roleRepository.deleteById(roleId);
 	}
 
@@ -56,11 +64,12 @@ public class RoleService {
 	public List<Role> fetchRoleByCat(@QueryParam("cat") String cat){
 		return roleRepository.findByCategory(cat);
 	}
-	
+
 	
 
 //	public Role findByRoleId(int roleId) {
 //		Role role = roleRepository.findById(roleId).get(); 
 //		return role;
 //	}
+
 }

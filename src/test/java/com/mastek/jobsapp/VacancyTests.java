@@ -1,3 +1,4 @@
+
 package com.mastek.jobsapp;
 
 import static org.junit.Assert.*;
@@ -22,7 +23,6 @@ import com.mastek.jobsapp.entities.Vacancy;
 @SpringBootTest
 public class VacancyTests {
 
-
 	@Autowired
 	VacancyService vacSer;
 	
@@ -43,6 +43,7 @@ public class VacancyTests {
 		assertNotNull(vac);
 	}
 
+
 	@Test
 	public void findByVacancyById() {
 		int vacancyId = 3; 
@@ -57,6 +58,11 @@ public class VacancyTests {
 //	}
 
 	
+
+//	@Autowired
+//	VacancyService vacSer;
+//	
+
 //	@Test
 //	public void test() {
 //		fail("Not yet implemented");
@@ -64,5 +70,6 @@ public class VacancyTests {
 
 
 }
+
 
 

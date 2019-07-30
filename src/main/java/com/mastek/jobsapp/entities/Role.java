@@ -1,17 +1,33 @@
 package com.mastek.jobsapp.entities;
 
+
+import java.io.Serializable;
+
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 
+@Scope("prototype")
 @Entity
 @Table(name = "JPA_ROLE")
 @NamedQueries({
@@ -19,22 +35,20 @@ import org.springframework.beans.factory.annotation.Value;
 			query="select e from Role e where e.category = :cat") // query = "object_query"
 })
 @XmlRootElement
-public class Role {
+public class Role implements Serializable {
+	
 	@Value("0")
 	private int roleID;
+	@FormParam("category")
 	@Value("defult")
 	private String category;
+	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
+
+	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
-	// to be calculated from vacancy
-	private int rankNow;
-	private int medianSalaryNow;
-	private int numVacanciesNow;
-	private int rankLast;
-	private int medianSalaryLast;
-	private int numVacanciesLast;
-	
+
 	public Role() {
 		System.out.println("new role created");
 	}
@@ -67,58 +81,20 @@ public class Role {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-
-	// end of tabulated results
-
-	public int getRankNow() {
-		return rankNow;
-	}
-
-	public void setRankNow(int rankNow) {
-		this.rankNow = rankNow;
-	}
-
-	public int getMedianSalaryNow() {
-		return medianSalaryNow;
-	}
-
-	public void setMedianSalaryNow(int medianSalaryNow) {
-		this.medianSalaryNow = medianSalaryNow;
-	}
-
-	public int getNumVacanciesNow() {
-		return numVacanciesNow;
-	}
-
-	public void setNumVacanciesNow(int numVacanciesNow) {
-		this.numVacanciesNow = numVacanciesNow;
-	}
-
-	public int getRankLast() {
-		return rankLast;
-	}
-
-	public void setRankLast(int rankLast) {
-		this.rankLast = rankLast;
-	}
-
-	public int getMedianSalaryLast() {
-		return medianSalaryLast;
-	}
-
-	public void setMedianSalaryLast(int medianSalaryLast) {
-		this.medianSalaryLast = medianSalaryLast;
-	}
-
-	public int getNumVacanciesLast() {
-		return numVacanciesLast;
-	}
-
-	public void setNumVacanciesLast(int numVacanciesLast) {
-		this.numVacanciesLast = numVacanciesLast;
-	}
-
 	
+
+
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
+	@XmlTransient // ignore the collections while using API
+	public Set<Vacancy> getRoleVacancies() {
+		return roleVacancies;
+	}
+
+	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
+		this.roleVacancies = roleVacancies;
+	}
+	
+
 	
 	
 	
