@@ -52,7 +52,9 @@ import org.springframework.stereotype.Component;
 			@Value("true")
 			@FormParam("jobType")
 			private boolean jobType;
-			
+			@Value("2015")
+			@FormParam("uploadYear")
+			private int uploadYear; 
 			private Role thisRole;
 			
 			// One department has many Employees
@@ -112,7 +114,7 @@ import org.springframework.stereotype.Component;
 		this.location = location;
 	}
 
-	@Column(name="description", nullable= false, length=45)
+	@Column(name="description", nullable= false, length=150)
 	public String getDescription() {
 		return description;
 	}
@@ -130,7 +132,7 @@ import org.springframework.stereotype.Component;
 		this.company = company;
 	}
 
-	@Column(name="link", nullable= false, length=45)
+	@Column(name="link", nullable= false, length=100)
 	public String getLink() {
 		return link;
 	}
@@ -142,6 +144,15 @@ import org.springframework.stereotype.Component;
 	@Column(name="post_time", nullable= false, length=45)
 	public String getPostTime() {
 		return postTime;
+	}
+	
+	@Column(name="upload_year")
+	public int getUploadYear() {
+		return uploadYear;
+	}
+
+	public void setUploadYear(int uploadYear) {
+		this.uploadYear = uploadYear;
 	}
 
 	public void setPostTime(String postTime) {
@@ -157,10 +168,10 @@ import org.springframework.stereotype.Component;
 		this.jobType = jobType;
 	}
 
-
 	
-		public Vacancy() {
-		System.out.println("Vacancy Created");
+	
+	public Vacancy() {
+	System.out.println("Vacancy Created");
 	}
 		
 	@ManyToOne
@@ -179,10 +190,7 @@ import org.springframework.stereotype.Component;
 				+ getSalary() + ", getLocation()=" + getLocation() + ", getDescription()="
 				+ getDescription() + ", getCompany()=" + getCompany() + ", getLink()=" + getLink()
 				+ ", getPostTime()=" + getPostTime() + ", isJobType()=" + isJobType() + "]";
-	}
-
-		
-	
+	}	
 }	
 		
 		

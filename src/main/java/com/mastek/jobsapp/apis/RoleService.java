@@ -35,18 +35,36 @@ public class RoleService {
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
 	public Role registerOrUpdateRole(@BeanParam Role role) {
+<<<<<<< HEAD
+		Role currentRole = findByRoleId(role.getRoleID());
+		if (currentRole!=null) {
+			currentRole.setRoleName(role.getRoleName());
+			currentRole.setCategory(role.getCategory());
+			currentRole.setRoleVacancies(role.getRoleVacancies());
+			role = roleRepository.save(role);
+		} else {
+			role = roleRepository.save(role);
+		}
+		System.out.println("Role Registered " + role);
+=======
+		
 		role = roleRepository.save(role);
+
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 		return role; 
 	}
+<<<<<<< HEAD
 	
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Path("/find/{roleid}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
 	public Role findByRoleId(@PathParam("roleid") int roleId) {
 		Role role = roleRepository.findById(roleId).get(); 
-	
 		return role;
 	}
 	
@@ -64,12 +82,21 @@ public class RoleService {
 	public List<Role> fetchRoleByCat(@QueryParam("cat") String cat){
 		return roleRepository.findByCategory(cat);
 	}
+<<<<<<< HEAD
+}
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 	
 
-//	public Role findByRoleId(int roleId) {
-//		Role role = roleRepository.findById(roleId).get(); 
-//		return role;
-//	}
-
+<<<<<<< HEAD
+=======
+	@GET
+	@Path("/list")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Iterable<Role> listAllRoles(){
+		// fetch all departments from the table
+		return roleRepository.findAll();
+	}
 }
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
