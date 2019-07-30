@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -49,7 +50,22 @@ public class VacancyService {
 		@Produces(MediaType.APPLICATION_JSON) // produce json data
 		@Transactional
 		public Vacancy registerOrUpdateVacancy(@BeanParam Vacancy job) {
-			job=vacancyRepository.save(job);
+			Vacancy currentVac = findByVacanyId(job.getVacancyId());
+			if (currentVac!=null) {
+				currentVac.setCompany(job.getCompany());	
+				currentVac.setDescription(job.getDescription());
+				currentVac.setJobType(job.isJobType());
+				currentVac.setLink(job.getLink());
+				currentVac.setLocation(job.getLocation());
+				currentVac.setPostTime(job.getPostTime());
+				currentVac.setSalary(job.getSalary());
+				currentVac.setTitle(job.getTitle());
+				currentVac.setUploadYear(job.getUploadYear());
+				job = vacancyRepository.save(job);
+			} else {
+				job=vacancyRepository.save(job);
+			}
+			
 			System.out.println("Vacancy" + job);
 			return job;
 		}
@@ -76,7 +92,16 @@ public class VacancyService {
 			vacancyRepository.deleteById(vacancyId);
 		}
 
-
+//		
+//		public void enterJobTitle() {
+//			//for (int j = 1; j < 11; j++) {
+//				Vacancy currentVac = findByVacanyId(1);
+//				System.out.println("Current Vacancy" + currentVac);
+//				currentVac.setTitle("Java Engineer");
+//			//}
+//			
+//		}
+		
 //		@ManyToOne
 //		@JoinColumn(name="FK_Team_id")
 //		public Team getCurrentTeam() {

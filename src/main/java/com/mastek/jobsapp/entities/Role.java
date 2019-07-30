@@ -1,24 +1,14 @@
 package com.mastek.jobsapp.entities;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import java.io.Serializable;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,13 +44,6 @@ public class Role implements Serializable {
 	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
-<<<<<<< HEAD
-
-	
-	
-=======
-
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
 
@@ -96,13 +79,7 @@ public class Role implements Serializable {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-<<<<<<< HEAD
-	
-=======
-	
 
-
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {
@@ -112,12 +89,6 @@ public class Role implements Serializable {
 	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
 		this.roleVacancies = roleVacancies;
 	}
-	
-<<<<<<< HEAD
-=======
-
-	
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	
 	
 }
