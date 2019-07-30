@@ -35,4 +35,5 @@ public class UserTest {
 		userDetailsService.deleteByUserId(userId);
 		assertNull(userDetailsService.findByUserId(userId));
 	}
+	//
 }
