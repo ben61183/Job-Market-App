@@ -1,4 +1,27 @@
-
+//package com.mastek.jobsapp;
+//
+//import static org.junit.Assert.*;
+//
+//import org.junit.After;
+//import org.junit.AfterClass;
+//import org.junit.Before;
+//import org.junit.BeforeClass;
+//import org.junit.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//
+//import com.mastek.jobsapp.apis.VacancyService;
+//
+//public class VacancyTests {
+//
+//	@Autowired
+//	VacancyService vacSer;
+//	
+//	@Test
+//	public void test() {
+//		fail("Not yet implemented");
+//	}
+//
+//}
 package com.mastek.jobsapp;
 
 import static org.junit.Assert.*;
@@ -28,9 +51,12 @@ public class VacancyTests {
 
 	@Autowired
 	VacancyService vacSer;
+<<<<<<< HEAD
 	
 	@Autowired
 	VacancyRepository vacRepository; 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	
 	@Test
 	public void addVacancyUsingService() {
@@ -48,8 +74,11 @@ public class VacancyTests {
 		assertNotNull(vac);
 	}
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Test
 	public void findByVacancyById() {
 		int vacancyId = 3; 
@@ -82,6 +111,7 @@ public class VacancyTests {
 //		assertNull(vacSer.findByVacanyId(vacancyId));
 //	}
 
+<<<<<<< HEAD
 	
 
 //	@Test
@@ -94,3 +124,7 @@ public class VacancyTests {
 
 
 
+=======
+	
+}
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git

@@ -41,16 +41,22 @@ public class RoleTests {
 		System.out.println("Role Tests Loaded");
 	}
 	
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 //	@Test
 //	public void findByRoleId() {
 //		int roleid = 4; 
 //		assertNotNull(rolSer.findByRoleId(roleid));
 //	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Test
 	public void addNewRole() {
 
@@ -62,8 +68,12 @@ public class RoleTests {
 		Role role2 = new Role();
 		role2.setRoleName("Python");
 		role2.setCategory("Cloud Services");
+<<<<<<< HEAD
 		role2 = rolSer.registerOrUpdateRole(role2);
 
+=======
+		role2 = rolSer.registerOrUpdateRole(role2);
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 		
 		assertNotNull(role1);
 	}
@@ -74,9 +84,15 @@ public class RoleTests {
 	public void findByRoleId() {
 
 		int roleid = 11; 
+<<<<<<< HEAD
 		assertNotNull(rolSer.findByRoleId(roleid));
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 	// add back later
 	@Ignore
@@ -88,13 +104,20 @@ public class RoleTests {
 		//assertNull(rolSer.findByRoleId(roleid));
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	public void findByCat() {
 		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
 		System.out.println("test roles:"+rolesOfCategory);
 		assertTrue(rolesOfCategory.size()>0);
+<<<<<<< HEAD
 	}
 
+=======
+	}
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 	@Test
 	public void assignRole() {
@@ -114,6 +137,11 @@ public class RoleTests {
 		vac.setLocation("default location");
 		vac.setThisRole(role2);
 		vac = vacSer.registerOrUpdateVacancy(vac);
+<<<<<<< HEAD
 	}
 
 }
+=======
+	}
+}
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
