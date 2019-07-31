@@ -34,12 +34,14 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.mastek.jobsapp.apis.RoleService;
 import com.mastek.jobsapp.apis.VacancyService;
 import com.mastek.jobsapp.entities.Role;
 import com.mastek.jobsapp.entities.Vacancy;
@@ -51,12 +53,14 @@ public class VacancyTests {
 
 	@Autowired
 	VacancyService vacSer;
-<<<<<<< HEAD
+	
+	@Autowired
+	RoleService roleSer; 
 	
 	@Autowired
 	VacancyRepository vacRepository; 
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+	
+	
 	
 	@Test
 	public void addVacancyUsingService() {
@@ -74,11 +78,6 @@ public class VacancyTests {
 		assertNotNull(vac);
 	}
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 	@Test
 	public void findByVacancyById() {
 		int vacancyId = 3; 
@@ -86,10 +85,10 @@ public class VacancyTests {
 		
 	}
 	
-	@Test
+	@Ignore // use once to randomise the job titles 
 	public void updateJobTitle() {
 		String[] jobTitles = new String[20];
-			jobTitles[0] = ".NET Developer"; jobTitles[1] = "Java Developer"; jobTitles[2] = "C# Developer"; jobTitles[3] = "DevOps Engineer"; jobTitles[4] = "Front End Developer"; jobTitles[5] = "C# Developer";
+			jobTitles[0] = ".NET Developer"; jobTitles[1] = "Java Developer"; jobTitles[2] = "C# Developer"; jobTitles[3] = "DevOps Engineer"; jobTitles[4] = "Front End Developer"; jobTitles[5] = "SQL Developer";
 			jobTitles[6] = "IT Engineer"; jobTitles[7] = "Full Stack Developer"; jobTitles[8] = "Web Developer"; jobTitles[9] = "PHP Developer"; jobTitles[10] = "JavaScript Developer"; jobTitles[11]="Infastructure Developer";
 			jobTitles[11] = "Network Engineer"; jobTitles[12] = "React Developer"; 
 			
@@ -97,13 +96,18 @@ public class VacancyTests {
 			
 		for (int i = 1; i < 1001; i++) {
 			Vacancy currentVac = vacSer.findByVacanyId(i);
+			
 			int n = random.nextInt(12);
 			n+=1; 
 			currentVac.setTitle(jobTitles[n]);
+			vacSer.assignRole(i, n);
 			currentVac = vacRepository.save(currentVac);
+			
+			
 		}
 		
 	}
+	
 //	@Test
 //	public void deleteByVacancyId() {
 //		int vacancyId = 4; 
@@ -111,7 +115,6 @@ public class VacancyTests {
 //		assertNull(vacSer.findByVacanyId(vacancyId));
 //	}
 
-<<<<<<< HEAD
 	
 
 //	@Test
@@ -124,7 +127,5 @@ public class VacancyTests {
 
 
 
-=======
 	
-}
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
+

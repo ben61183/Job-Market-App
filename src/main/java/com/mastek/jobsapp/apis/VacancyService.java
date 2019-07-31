@@ -1,5 +1,7 @@
 package com.mastek.jobsapp.apis;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
@@ -14,6 +16,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
@@ -43,6 +46,8 @@ public class VacancyService {
 		public VacancyService() {
 			System.out.println("Player Service Created");
 		}
+		
+	
 		
 		@POST // http method to send form data
 		@Path("/register") // url 
@@ -92,15 +97,6 @@ public class VacancyService {
 			vacancyRepository.deleteById(vacancyId);
 		}
 
-//		
-//		public void enterJobTitle() {
-//			//for (int j = 1; j < 11; j++) {
-//				Vacancy currentVac = findByVacanyId(1);
-//				System.out.println("Current Vacancy" + currentVac);
-//				currentVac.setTitle("Java Engineer");
-//			//}
-//			
-//		}
 		
 //		@ManyToOne
 //		@JoinColumn(name="FK_Team_id")
