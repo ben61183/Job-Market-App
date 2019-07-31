@@ -61,7 +61,7 @@ public class VacancyTests {
 	VacancyRepository vacRepository; 
 	
 	
-	
+	@Ignore
 	@Test
 	public void addVacancyUsingService() {
 		Vacancy vac= new Vacancy();
@@ -80,12 +80,12 @@ public class VacancyTests {
 
 	@Test
 	public void findByVacancyById() {
-		int vacancyId = 3; 
+		int vacancyId = 2; 
 		assertNotNull(vacSer.findByVacanyId(vacancyId));
 		
 	}
 	
-	@Ignore // use once to randomise the job titles 
+	@Test
 	public void updateJobTitle() {
 		String[] jobTitles = new String[20];
 			jobTitles[0] = ".NET Developer"; jobTitles[1] = "Java Developer"; jobTitles[2] = "C# Developer"; jobTitles[3] = "DevOps Engineer"; jobTitles[4] = "Front End Developer"; jobTitles[5] = "SQL Developer";
@@ -103,25 +103,10 @@ public class VacancyTests {
 			vacSer.assignRole(i, n);
 			currentVac = vacRepository.save(currentVac);
 			
-			
 		}
 		
 	}
 	
-//	@Test
-//	public void deleteByVacancyId() {
-//		int vacancyId = 4; 
-//		vacSer.deleteByVacancyId(vacancyId);
-//		assertNull(vacSer.findByVacanyId(vacancyId));
-//	}
-
-	
-
-//	@Test
-//	public void test() {
-//		fail("Not yet implemented");
-//	}
-
 
 }
 
