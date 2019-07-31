@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class APIConfig extends ResourceConfig{
 	public APIConfig(){
+		register(CORSFilter.class);
+
 		register(RoleService.class);
 		register(VacancyService.class);
 		register(UserDetailsService.class);
-		
-		register(CORSFilter.class);
 	}
 }
 

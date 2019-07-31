@@ -2,7 +2,6 @@ package com.mastek.jobsapp.apis;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,8 +16,10 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mastek.jobsapp.entities.Role;
+import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.RoleRepository;
 
 @Component
@@ -90,5 +91,15 @@ public class RoleService {
 	public Iterable<Role> listAllRoles(){
 		// fetch all departments from the table
 		return roleRepository.findAll();
+	}
+	
+	@GET
+	@Path("/thesevacancies/{roleId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Transactional
+	public Iterable<Vacancy> listAllVacanciesOfRole(@PathParam("roleId") int roleId){
+		Role role = findByRoleId(roleId);
+		int count = role.getRoleVacancies().size();
+		return role.getRoleVacancies();
 	}
 }
