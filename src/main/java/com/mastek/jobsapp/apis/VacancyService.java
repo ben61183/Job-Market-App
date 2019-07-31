@@ -86,7 +86,7 @@ public class VacancyService {
 			try {
 				return vacancyRepository.findById(vacancyId).get();
 			}catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("no vacancy found");
 				return null;
 			}
 		}

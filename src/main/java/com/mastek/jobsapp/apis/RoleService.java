@@ -57,8 +57,16 @@ public class RoleService {
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
 	public Role findByRoleId(@PathParam("roleid") int roleId) {
-		Role role = roleRepository.findById(roleId).get(); 
-		return role;
+		try {
+			return roleRepository.findById(roleId).get();
+		}catch (Exception e) {
+			
+			System.out.println("no role found");
+			return null;
+		}
+		
+//		Role role = roleRepository.findById(roleId).get(); 
+//		return role;
 	}
 	
 	@DELETE
