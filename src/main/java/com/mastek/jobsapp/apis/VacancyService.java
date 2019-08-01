@@ -26,8 +26,8 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobsapp.entities.Role;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.VacancyRepository;
-import com.mastek.training.hrapp.entities.Department;
 
+//@componet for spingboot to work
 @Component
 @Scope("singleton")
 @Path("/vacancy/")
