@@ -81,8 +81,8 @@ public class RoleService {
 	@Produces({ // declare all possible content types of return value
 		MediaType.APPLICATION_JSON, // object to be given in JSON
 	})
-	public List<Role> fetchRoleByCat(@QueryParam("cat") String cat){
-		return roleRepository.findByCategory(cat);
+	public List<Role> fetchRoleByCat(@QueryParam("searchParam") String searchParam){
+		return roleRepository.findByCategory(searchParam);
 	}
 
 	@GET

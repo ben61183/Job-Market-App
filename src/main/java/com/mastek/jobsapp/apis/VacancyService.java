@@ -109,7 +109,7 @@ public class VacancyService {
 //			this.currentTeam = currentTeam;
 //		}
 
-		
+	
 	@Transactional
 	@POST
 	@Path("/assign/role")

@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Scope;
 @Table(name = "JPA_ROLE")
 @NamedQueries({
 	@NamedQuery(name="Role.findByCategory", // name = "<classname>.<queryname>"
-			query="select e from Role e where e.category = :cat") // query = "object_query"
+			query="select r from Role r where role_name like concat('%', :searchParam, '%')") // query = "object_query"
 })
 @XmlRootElement
 public class Role implements Serializable {

@@ -11,6 +11,6 @@ import com.mastek.jobsapp.entities.Role;
 @Component
 public interface RoleRepository extends CrudRepository<Role, Integer>{
 
-	List<Role> findByCategory(@Param("cat") String cat);
+	List<Role> findByCategory(@Param("searchParam") String searchParam);
 	
 }
