@@ -29,17 +29,13 @@ import com.mastek.jobsapp.repositories.VacancyRepository;
 @Scope("singleton")
 @Path("/vacancy/")
 public class VacancyService {
-		// o
+		
 		@Autowired
 		private VacancyRepository vacancyRepository;
 
 		@Autowired
 		private RoleService rolSer;
-		
-//		
-//		private Team currentTeam;
 
-		
 		public VacancyService() {
 			System.out.println("Player Service Created");
 		}
@@ -102,15 +98,6 @@ public class VacancyService {
 //			
 //		}
 		
-//		@ManyToOne
-//		@JoinColumn(name="FK_Team_id")
-//		public Team getCurrentTeam() {
-//			return currentTeam;
-//		}
-//
-//		public void setCurrentTeam(Team currentTeam) {
-//			this.currentTeam = currentTeam;
-//		}
 
 		
 	@Transactional
