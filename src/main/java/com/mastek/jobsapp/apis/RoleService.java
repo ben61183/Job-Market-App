@@ -36,7 +36,12 @@ public class RoleService {
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
 	public Role registerOrUpdateRole(@BeanParam Role role) {
+<<<<<<< HEAD
+
+		Role currentRole = findByRoleId(role.getRoleID());
+=======
 		Role currentRole = findByRoleId(role.getRoleId());
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 		if (currentRole!=null) {
 			currentRole.setRoleName(role.getRoleName());
 			currentRole.setCategory(role.getCategory());
@@ -45,14 +50,14 @@ public class RoleService {
 		} else {
 			role = roleRepository.save(role);
 		}
-		System.out.println("Role Registered " + role);
-		
+		System.out.println("Role Registered " + role);		
 		role = roleRepository.save(role);
-
+		System.out.println("Role Registered " + role);
+		role = roleRepository.save(role);
 		return role; 
 	}
 
-	
+
 	@Path("/find/{roleid}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -85,6 +90,7 @@ public class RoleService {
 		return roleRepository.findByCategory(searchParam);
 	}
 
+
 	@GET
 	@Path("/list")
 	@Produces({MediaType.APPLICATION_JSON})
@@ -103,3 +109,4 @@ public class RoleService {
 		return role.getRoleVacancies();
 	}
 }
+

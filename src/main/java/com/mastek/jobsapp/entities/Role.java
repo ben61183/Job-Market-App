@@ -1,14 +1,12 @@
 package com.mastek.jobsapp.entities;
 import java.io.Serializable;
-
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-
+import java.util.Set;
 import javax.persistence.CascadeType;
-
-
+import javax.persistence.CascadeType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +45,7 @@ public class Role implements Serializable {
 	@Value("defult")
 
 	private String roleName;
-	
+
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
 	public Role() {
@@ -81,8 +79,9 @@ public class Role implements Serializable {
 
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
-
+	
 	}
+
 
 
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
@@ -95,6 +94,8 @@ public class Role implements Serializable {
 		this.roleVacancies = roleVacancies;
 	}
 	
+
 	}
+
 	
 

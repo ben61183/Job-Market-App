@@ -54,9 +54,11 @@ import org.springframework.stereotype.Component;
 			@Value("true")
 			@FormParam("jobType")
 			private boolean jobType;
+			
 			@Value("2015")
 			@FormParam("uploadYear")
 			private int uploadYear; 
+			
 			private Role thisRole;
 			
 			// One department has many Employees

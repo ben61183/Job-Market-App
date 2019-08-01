@@ -19,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -28,21 +27,18 @@ import com.mastek.jobsapp.entities.Role;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.VacancyRepository;
 
+//@componet for spingboot to work
 @Component
 @Scope("singleton")
 @Path("/vacancy/")
 public class VacancyService {
-		// o
+		
 		@Autowired
 		private VacancyRepository vacancyRepository;
 
 		@Autowired
 		private RoleService rolSer;
-		
-//		
-//		private Team currentTeam;
 
-		
 		public VacancyService() {
 			System.out.println("Player Service Created");
 		}
@@ -98,16 +94,13 @@ public class VacancyService {
 			vacancyRepository.deleteById(vacancyId);
 		}
 
-		
-//		@ManyToOne
-//		@JoinColumn(name="FK_Team_id")
-//		public Team getCurrentTeam() {
-//			return currentTeam;
-//		}
-//
-//		public void setCurrentTeam(Team currentTeam) {
-//			this.currentTeam = currentTeam;
-//		}
+		@GET
+		@Path("/list")
+		@Produces({MediaType.APPLICATION_JSON})
+		public Iterable<Vacancy> listAllVacanciess(){
+			//fetch all vacancies from table
+			return vacancyRepository.findAll();
+		}
 
 	
 	@Transactional
