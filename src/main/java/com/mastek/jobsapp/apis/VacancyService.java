@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 import com.mastek.jobsapp.entities.Role;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.VacancyRepository;
+import com.mastek.training.hrapp.entities.Department;
 
 @Component
 @Scope("singleton")
@@ -93,7 +94,13 @@ public class VacancyService {
 			vacancyRepository.deleteById(vacancyId);
 		}
 
-		
+		@GET
+		@Path("/list")
+		@Produces({MediaType.APPLICATION_JSON})
+		public Iterable<Vacancy> listAllVacanciess(){
+			//fetch all vacancies from table
+			return vacancyRepository.findAll();
+		}
 
 		
 	@Transactional
