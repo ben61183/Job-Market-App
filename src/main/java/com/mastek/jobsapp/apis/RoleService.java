@@ -2,7 +2,6 @@ package com.mastek.jobsapp.apis;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,8 +16,10 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mastek.jobsapp.entities.Role;
+import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.RoleRepository;
 
 @Component
@@ -35,6 +36,7 @@ public class RoleService {
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
 	public Role registerOrUpdateRole(@BeanParam Role role) {
+
 		Role currentRole = findByRoleId(role.getRoleID());
 		if (currentRole!=null) {
 			currentRole.setRoleName(role.getRoleName());
@@ -46,16 +48,27 @@ public class RoleService {
 		}
 		System.out.println("Role Registered " + role);		
 		role = roleRepository.save(role);
+		System.out.println("Role Registered " + role);
+		role = roleRepository.save(role);
 		return role; 
 	}
+
 
 	@Path("/find/{roleid}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
 	public Role findByRoleId(@PathParam("roleid") int roleId) {
-		Role role = roleRepository.findById(roleId).get(); 
-		return role;
+		try {
+			return roleRepository.findById(roleId).get();
+		}catch (Exception e) {
+			
+			System.out.println("no role found");
+			return null;
+		}
+		
+//		Role role = roleRepository.findById(roleId).get(); 
+//		return role;
 	}
 	
 	@DELETE
@@ -74,13 +87,22 @@ public class RoleService {
 	}
 
 
-
 	@GET
 	@Path("/list")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Iterable<Role> listAllRoles(){
 		// fetch all departments from the table
 		return roleRepository.findAll();
+	}
+	
+	@GET
+	@Path("/thesevacancies/{roleId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Transactional
+	public Iterable<Vacancy> listAllVacanciesOfRole(@PathParam("roleId") int roleId){
+		Role role = findByRoleId(roleId);
+		int count = role.getRoleVacancies().size();
+		return role.getRoleVacancies();
 	}
 }
 
