@@ -36,7 +36,7 @@ public class RoleService {
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
 	public Role registerOrUpdateRole(@BeanParam Role role) {
-		Role currentRole = findByRoleId(role.getRoleID());
+		Role currentRole = findByRoleId(role.getRoleId());
 		if (currentRole!=null) {
 			currentRole.setRoleName(role.getRoleName());
 			currentRole.setCategory(role.getCategory());
