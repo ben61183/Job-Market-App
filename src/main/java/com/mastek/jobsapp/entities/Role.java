@@ -35,8 +35,9 @@ import org.springframework.context.annotation.Scope;
 @XmlRootElement
 public class Role implements Serializable {
 	
+	//ensure lower case 'd' in roleId
 	@Value("0")
-	private int roleID;
+	private int roleId;
 	@FormParam("category")
 	@Value("defult")
 	private String category;
@@ -54,12 +55,12 @@ public class Role implements Serializable {
 	@Id
 	@Column(name="roleid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getRoleID() {
-		return roleID;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRoleID(int roleID) {
-		this.roleID = roleID;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 
 	@Column(name="category", nullable=false)
