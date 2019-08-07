@@ -72,7 +72,7 @@ public class User {
 		return "User [getUserId()=" + getUserId() + ", getUsername()=" + getUsername() + ", getPassword()="
 				+ getPassword() + ", getEmail()=" + getEmail() + ", getPasswordConfirm()=" + getPasswordConfirm() + "]";
 	}
-	
+	// user-skill
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // has cascade -> primary class. EAGER is not ideal
 	@JoinTable(name = "JPA_USERSKILLS", 
 		joinColumns = @JoinColumn(name = "FK_USERID"),
