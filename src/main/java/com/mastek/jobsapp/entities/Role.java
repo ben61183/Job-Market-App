@@ -85,8 +85,6 @@ public class Role implements Serializable {
 	
 	}
 
-
-
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {

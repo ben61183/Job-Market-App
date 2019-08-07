@@ -32,6 +32,9 @@ public class UserDetailsService {
 	@Autowired
 	private SkillService skiSer;
 	
+	@Autowired
+	private VacancyService vacSer;
+	
 	public UserDetailsService() {
 		System.out.println("User Created");
 	}
@@ -56,13 +59,12 @@ public class UserDetailsService {
 		userRepository.deleteById(userId);
 	}
 
-
 	@Transactional
 	@POST
 	@Path("/assign/skill")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<Skill> assignSkill(@FormParam("userId") int userId, @FormParam("skillId") int skillId) {
+	public User assignSkill(@FormParam("userId") int userId, @FormParam("skillId") int skillId) {
 		try {
 			// fetch entities to be associated
 			User u = findByUserId(userId);
@@ -70,12 +72,31 @@ public class UserDetailsService {
 			// manage the association
 			u.getUserSkills().add(s); // one assigned with many
 			u = registerAccountOrUpdate(u);
-			return u.getUserSkills();
+			return u;
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-}
 
+	@Transactional
+	@POST
+	@Path("/assign/vacancy")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User assignVacancy(@FormParam("userId") int userId, @FormParam("vacancyId") int vacancyId) {
+		try {
+			// fetch entities to be associated
+			User u = findByUserId(userId);
+			Vacancy s = vacSer.findByVacanyId(vacancyId);
+			// manage the association
+			u.getSavedVacancies().add(s); // one assigned with many
+			u = registerAccountOrUpdate(u);
+			return u;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

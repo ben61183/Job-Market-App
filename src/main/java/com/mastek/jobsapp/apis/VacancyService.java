@@ -48,7 +48,6 @@ public class VacancyService {
 		System.out.println("Player Service Created");
 	}
 	
-
 	
 	@POST // http method to send form data
 	@Path("/register") // url 

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,8 @@ public class User {
 	private String passwordConfirm;
 	
 	private Set<Skill> userSkills = new HashSet<>();
+	
+	private Set<Vacancy> savedVacancies = new HashSet<>();
 	
 	@Id
 	@Column
@@ -70,7 +73,7 @@ public class User {
 				+ getPassword() + ", getEmail()=" + getEmail() + ", getPasswordConfirm()=" + getPasswordConfirm() + "]";
 	}
 	
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY) // has cascade -> primary class
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // has cascade -> primary class. EAGER is not ideal
 	@JoinTable(name = "JPA_USERSKILLS", 
 		joinColumns = @JoinColumn(name = "FK_USERID"),
 		inverseJoinColumns = @JoinColumn(name = "FK_SKILLID"))
@@ -79,6 +82,19 @@ public class User {
 	}
 	public void setUserSkills(Set<Skill> userSkills) {
 		this.userSkills = userSkills;
+	}
+	
+	
+	
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // has cascade -> primary class
+	@JoinTable(name = "JPA_USERVACANCIES", 
+		joinColumns = @JoinColumn(name = "FK_USERID"),
+		inverseJoinColumns = @JoinColumn(name = "FK_VACANCYID"))
+	public Set<Vacancy> getSavedVacancies() {
+		return savedVacancies;
+	}
+	public void setSavedVacancies(Set<Vacancy> savedJobs) {
+		this.savedVacancies = savedJobs;
 	}
 	
 	

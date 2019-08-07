@@ -70,6 +70,8 @@ import org.springframework.stereotype.Component;
 			
 			private Set<Skill> vacancySkills = new HashSet<>();
 			
+			private Set<User> vacancyUsers = new HashSet<>();
+			
 	@Id //declare the property as Primary Key
 	@Column(name="vacancy_id")//declare the column name
 	@GeneratedValue(strategy=GenerationType.AUTO) //auto-numbering the primary key
@@ -187,6 +189,7 @@ import org.springframework.stereotype.Component;
 				+ ", getPostTime()=" + getPostTime() + ", isJobType()=" + isJobType() + "]";
 	}
 	
+	
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // EAGER is not ideal here
 	@JoinTable(name = "JPA_VACANCYSKILLS", 
 		joinColumns = @JoinColumn(name = "FK_VACANCYID"),
@@ -198,13 +201,15 @@ import org.springframework.stereotype.Component;
 
 	public void setVacancySkills(Set<Skill> vacancySkills) {
 		this.vacancySkills = vacancySkills;
+	}
+
+	@ManyToMany(fetch=FetchType.LAZY,mappedBy = "savedVacancies")
+	@XmlTransient
+	public Set<User> getVacancyUsers() {
+		return vacancyUsers;
+	}
+
+	public void setVacancyUsers(Set<User> vacancyUsers) {
+		this.vacancyUsers = vacancyUsers;
 	}	
 }	
-		
-		
-		
-		
-		
-
-
-
