@@ -1,6 +1,7 @@
 package com.mastek.jobsapp.apis;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.BeanParam;
@@ -24,6 +25,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.mastek.jobsapp.entities.Role;
+import com.mastek.jobsapp.entities.Skill;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.VacancyRepository;
 
@@ -33,76 +35,83 @@ import com.mastek.jobsapp.repositories.VacancyRepository;
 @Path("/vacancy/")
 public class VacancyService {
 		
-		@Autowired
-		private VacancyRepository vacancyRepository;
+	@Autowired
+	private VacancyRepository vacancyRepository;
 
-		@Autowired
-		private RoleService rolSer;
-
-		public VacancyService() {
-			System.out.println("Player Service Created");
-		}
-		
+	@Autowired
+	private RoleService rolSer;
 	
-		
-		@POST // http method to send form data
-		@Path("/register") // url 
-		@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // consume form data
-		@Produces(MediaType.APPLICATION_JSON) // produce json data
-		@Transactional
-		public Vacancy registerOrUpdateVacancy(@BeanParam Vacancy job) {
-			Vacancy currentVac = findByVacanyId(job.getVacancyId());
-			if (currentVac!=null) {
-				currentVac.setCompany(job.getCompany());	
-				currentVac.setDescription(job.getDescription());
-				currentVac.setJobType(job.isJobType());
-				currentVac.setLink(job.getLink());
-				currentVac.setLocation(job.getLocation());
-				currentVac.setPostTime(job.getPostTime());
-				currentVac.setSalary(job.getSalary());
-				currentVac.setTitle(job.getTitle());
-				currentVac.setUploadYear(job.getUploadYear());
-				job = vacancyRepository.save(job);
-			} else {
-				job=vacancyRepository.save(job);
-			}
-			
-			System.out.println("Vacancy" + job);
-			return job;
-		}
-		
-		@Path("/find/{vacancyId}")
-		@GET //HTTP Method used to call the api
-		@Produces({ //declare all possible content types of return value
-			MediaType.APPLICATION_JSON, //object to be given in JSON format
-			MediaType.APPLICATION_XML //object to be given in XML
-		})
-		@Transactional //to help fetch dependent data
-		public Vacancy findByVacanyId(@PathParam("vacancyId")int vacancyId) {
-			try {
-				return vacancyRepository.findById(vacancyId).get();
-			}catch (Exception e) {
-				e.printStackTrace();
-				//System.out.println("no vacancy found");
-				return null;
-			}
-		}
+	@Autowired
+	private SkillService skiSer;
 
-		@DELETE //delete http method
-		@Path("/delete/{vacancyId}")
-		public void deleteByVacancyId(@PathParam("vacancyId") int vacancyId) {
-			vacancyRepository.deleteById(vacancyId);
-		}
+	public VacancyService() {
+		System.out.println("Player Service Created");
+	}
+	
 
-		@GET
-		@Path("/list")
-		@Produces({MediaType.APPLICATION_JSON})
-		public Iterable<Vacancy> listAllVacanciess(){
-			//fetch all vacancies from table
-			return vacancyRepository.findAll();
+	
+	@POST // http method to send form data
+	@Path("/register") // url 
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // consume form data
+	@Produces(MediaType.APPLICATION_JSON) // produce json data
+	@Transactional
+	public Vacancy registerOrUpdateVacancy(@BeanParam Vacancy job) {
+		Vacancy currentVac = findByVacanyId(job.getVacancyId());
+		if (currentVac!=null) {
+			currentVac.setCompany(job.getCompany());	
+			currentVac.setDescription(job.getDescription());
+			currentVac.setJobType(job.isJobType());
+			currentVac.setLink(job.getLink());
+			currentVac.setLocation(job.getLocation());
+			currentVac.setPostTime(job.getPostTime());
+			currentVac.setSalary(job.getSalary());
+			currentVac.setTitle(job.getTitle());
+			currentVac.setUploadYear(job.getUploadYear());
+			job = vacancyRepository.save(job);
+		} else {
+			job=vacancyRepository.save(job);
 		}
-
 		
+		System.out.println("Vacancy" + job);
+		return job;
+	}
+	
+	@Path("/find/{vacancyId}")
+	@GET //HTTP Method used to call the api
+	@Produces({ //declare all possible content types of return value
+		MediaType.APPLICATION_JSON, //object to be given in JSON format
+		MediaType.APPLICATION_XML //object to be given in XML
+	})
+	@Transactional //to help fetch dependent data
+	public Vacancy findByVacanyId(@PathParam("vacancyId")int vacancyId) {
+		try {
+			Vacancy vac = vacancyRepository.findById(vacancyId).get();
+			int count = vac.getVacancySkills().size();
+			System.out.println("vacancyskills count: "+count);
+			return vac;
+		}catch (Exception e) {
+			e.printStackTrace();
+			//System.out.println("no vacancy found");
+			return null;
+		}
+	}
+
+	@DELETE //delete http method
+	@Path("/delete/{vacancyId}")
+	public void deleteByVacancyId(@PathParam("vacancyId") int vacancyId) {
+		vacancyRepository.deleteById(vacancyId);
+	}
+
+	@Transactional
+	@GET
+	@Path("/list")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Iterable<Vacancy> listAllVacanciess(){
+		//fetch all vacancies from table
+		return vacancyRepository.findAll();
+	}
+
+	
 	@Transactional
 	@POST
 	@Path("/assign/role")
@@ -121,7 +130,37 @@ public class VacancyService {
 		}
 			
 		}
-
+	
+	@Transactional
+	@POST
+	@Path("/assign/skill")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Set<Skill> assignSkill(@FormParam("vacancyId") int vacancyId, @FormParam("skillId") int skillId) {
+		try {
+			// fetch entities to be associated
+			Vacancy v = findByVacanyId(vacancyId);
+			Skill s = skiSer.findBySkillId(skillId);
+			// manage the association
+			v.getVacancySkills().add(s); // one assigned with many
+			v = registerOrUpdateVacancy(v);
+			return v.getVacancySkills();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@GET
+	@Path("/theseskills/{vacancyId}")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Transactional
+	public Iterable<Skill> loadSkillsOfVacancy(@PathParam("vacancyId") int vacancyId){
+		Vacancy vac = findByVacanyId(vacancyId);
+		int count = vac.getVacancySkills().size();
+		System.out.println("vacancyskills count: "+count);
+		return vac.getVacancySkills();
+	}
 }
 
 

@@ -10,6 +10,7 @@ public class APIConfig extends ResourceConfig{
 		register(RoleService.class);
 		register(VacancyService.class);
 		register(UserDetailsService.class);
+		register(SkillService.class);
 
 
 	}

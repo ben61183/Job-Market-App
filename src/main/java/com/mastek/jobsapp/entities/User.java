@@ -1,10 +1,18 @@
 package com.mastek.jobsapp.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
@@ -20,6 +28,8 @@ public class User {
 	private String password;
 	private String email;
 	private String passwordConfirm;
+	
+	private Set<Skill> userSkills = new HashSet<>();
 	
 	@Id
 	@Column
@@ -58,6 +68,17 @@ public class User {
 	public String toString() {
 		return "User [getUserId()=" + getUserId() + ", getUsername()=" + getUsername() + ", getPassword()="
 				+ getPassword() + ", getEmail()=" + getEmail() + ", getPasswordConfirm()=" + getPasswordConfirm() + "]";
+	}
+	
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY) // has cascade -> primary class
+	@JoinTable(name = "JPA_USERSKILLS", 
+		joinColumns = @JoinColumn(name = "FK_USERID"),
+		inverseJoinColumns = @JoinColumn(name = "FK_SKILLID"))
+	public Set<Skill> getUserSkills() {
+		return userSkills;
+	}
+	public void setUserSkills(Set<Skill> userSkills) {
+		this.userSkills = userSkills;
 	}
 	
 	
