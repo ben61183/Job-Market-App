@@ -1,19 +1,26 @@
 package com.mastek.jobsapp.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
@@ -61,24 +68,8 @@ import org.springframework.stereotype.Component;
 			
 			private Role thisRole;
 			
-			// One department has many Employees
-//			private Set<Employee> members = new HashSet<>();
+			private Set<Skill> vacancySkills = new HashSet<>();
 			
-			//@OneToMany: used on the get method of set to configure association
-			//fetch=Lazy: delay the initialisation until method getMembers() is called
-			//using additional select query.
-			//EAGER: Initialise the collection on entity find Post load event
-			//cascade= All the Entity operation done on Department would be performed on each associated employee object
-			//ALL:[Persist,Merge,Delete,Refresh]
-//			@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="currentDepartment")
-//			public Set<Player> getMembers() {
-//				return members;
-//			}
-
-//			public void setMembers(Set<Employee> members) {
-//				this.members = members;
-//			}
-//			
 	@Id //declare the property as Primary Key
 	@Column(name="vacancy_id")//declare the column name
 	@GeneratedValue(strategy=GenerationType.AUTO) //auto-numbering the primary key
@@ -194,6 +185,19 @@ import org.springframework.stereotype.Component;
 				+ getSalary() + ", getLocation()=" + getLocation() + ", getDescription()="
 				+ getDescription() + ", getCompany()=" + getCompany() + ", getLink()=" + getLink()
 				+ ", getPostTime()=" + getPostTime() + ", isJobType()=" + isJobType() + "]";
+	}
+	
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // EAGER is not ideal here
+	@JoinTable(name = "JPA_VACANCYSKILLS", 
+		joinColumns = @JoinColumn(name = "FK_VACANCYID"),
+		inverseJoinColumns = @JoinColumn(name = "FK_SKILLID"))
+//	@XmlTransient
+	public Set<Skill> getVacancySkills() {
+		return vacancySkills;
+	}
+
+	public void setVacancySkills(Set<Skill> vacancySkills) {
+		this.vacancySkills = vacancySkills;
 	}	
 }	
 		

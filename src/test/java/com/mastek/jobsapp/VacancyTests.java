@@ -42,8 +42,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.mastek.jobsapp.apis.RoleService;
+import com.mastek.jobsapp.apis.SkillService;
 import com.mastek.jobsapp.apis.VacancyService;
 import com.mastek.jobsapp.entities.Role;
+import com.mastek.jobsapp.entities.Skill;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.VacancyRepository;
 
@@ -58,7 +60,11 @@ public class VacancyTests {
 	RoleService roleSer; 
 	
 	@Autowired
+	SkillService skillSer;
+	
+	@Autowired
 	VacancyRepository vacRepository; 
+	
 	
 	
 	@Ignore
@@ -101,10 +107,15 @@ public class VacancyTests {
 			n+=1; 
 			currentVac.setTitle(jobTitles[n]);
 			vacSer.assignRole(i, n);
-			currentVac = vacRepository.save(currentVac);
-			
+			currentVac = vacRepository.save(currentVac);	
 		}
-		
+	}
+	
+	@Test
+	public void addSkill() {
+		int vId = 115;
+		int sId = 125;
+		vacSer.assignSkill(vId, sId);
 	}
 	
 

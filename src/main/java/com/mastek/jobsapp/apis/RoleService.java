@@ -27,15 +27,16 @@ import com.mastek.jobsapp.repositories.RoleRepository;
 @Path("/role/")
 public class RoleService {
 	
+	// connect to role repository
 	@Autowired
 	private RoleRepository roleRepository; 
 	
-	@POST // http method to ssend the form data
-	@Path("/register") // url pattern
+	@POST // http method to send the form data
+	@Path("/register") // url path
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // form data
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
-	public Role registerOrUpdateRole(@BeanParam Role role) {
+	public Role registerOrUpdateRole(@BeanParam Role role) { // register or update a role 
 		Role currentRole = findByRoleId(role.getRoleId());
 		if (currentRole!=null) {
 			currentRole.setRoleName(role.getRoleName());
@@ -76,7 +77,7 @@ public class RoleService {
 		roleRepository.deleteById(roleId);
 	}
 
-	@Path("/fetch_category")
+	@Path("/fetch_category") // fetch the associated category
 	@GET // http method used to call the api
 	@Produces({ // declare all possible content types of return value
 		MediaType.APPLICATION_JSON, // object to be given in JSON
@@ -95,7 +96,7 @@ public class RoleService {
 	}
 	
 	@GET
-	@Path("/thesevacancies/{roleId}")
+	@Path("/thesevacancies/{roleId}") // vacancies of a role
 	@Produces({MediaType.APPLICATION_JSON})
 	@Transactional
 	public Iterable<Vacancy> listAllVacanciesOfRole(@PathParam("roleId") int roleId){

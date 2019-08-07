@@ -38,13 +38,16 @@ public class Role implements Serializable {
 	//ensure lower case 'd' in roleId
 	@Value("0")
 	private int roleId;
+	
 	@FormParam("category")
 	@Value("defult")
 	private String category;
+	
 	@FormParam("roleName")
 	@Value("defult")
-
 	private String roleName;
+	
+	
 
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
