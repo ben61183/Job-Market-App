@@ -1,5 +1,6 @@
 package com.mastek.jobsapp.apis;
 
+<<<<<<< HEAD
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -9,23 +10,47 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.secure.spi.GrantedPermission;
+=======
+import java.util.Set;
+
+import javax.transaction.Transactional;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mastek.jobsapp.entities.Skill;
 import com.mastek.jobsapp.entities.User;
+import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.UserRepository;
 
 
 
 @Component
 @Scope
+<<<<<<< HEAD
 @Path("/userdetails/")
+=======
+@Path("/user/")
+>>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 public class UserDetailsService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private SkillService skiSer;
+	
+	@Autowired
+	private VacancyService vacSer;
 	
 	public UserDetailsService() {
 		System.out.println("User Created");
@@ -62,7 +87,44 @@ public class UserDetailsService {
 	}
 	
 
-
+	@Transactional
+	@POST
+	@Path("/assign/skill")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User assignSkill(@FormParam("userId") int userId, @FormParam("skillId") int skillId) {
+		try {
+			// fetch entities to be associated
+			User u = findByUserId(userId);
+			Skill s = skiSer.findBySkillId(skillId);
+			// manage the association
+			u.getUserSkills().add(s); // one assigned with many
+			u = registerAccountOrUpdate(u);
+			return u;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
-}
 
+	@Transactional
+	@POST
+	@Path("/assign/vacancy")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User assignVacancy(@FormParam("userId") int userId, @FormParam("vacancyId") int vacancyId) {
+		try {
+			// fetch entities to be associated
+			User u = findByUserId(userId);
+			Vacancy s = vacSer.findByVacanyId(vacancyId);
+			// manage the association
+			u.getSavedVacancies().add(s); // one assigned with many
+			u = registerAccountOrUpdate(u);
+			return u;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+}
