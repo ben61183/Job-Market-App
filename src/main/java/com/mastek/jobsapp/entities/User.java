@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.ws.rs.Path;
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.context.annotation.Scope;
