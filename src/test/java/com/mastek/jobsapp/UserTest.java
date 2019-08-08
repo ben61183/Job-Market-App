@@ -3,6 +3,7 @@ package com.mastek.jobsapp;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.mastek.jobsapp.entities.User;
 public class UserTest {
 	@Autowired
 	UserDetailsService userDetailsService;
-	
+	@Ignore
 	@Test
 	public void addAccountUsingService(){
 		User usr = new User();

@@ -1,13 +1,5 @@
 package com.mastek.jobsapp.entities;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
-
 import java.io.Serializable;
-
-<<<<<<< HEAD
-=======
 
 
 import java.util.HashSet;
@@ -47,8 +39,9 @@ import org.springframework.context.annotation.Scope;
 @XmlRootElement
 public class Role implements Serializable {
 	
+	//ensure lower case 'd' in roleId
 	@Value("0")
-	private int roleID;
+	private int roleId;
 	@FormParam("category")
 	@Value("defult")
 	private String category;
@@ -56,9 +49,6 @@ public class Role implements Serializable {
 	@Value("defult")
 
 	private String roleName;
-
-	private String roleName;
-	
 
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
@@ -69,12 +59,12 @@ public class Role implements Serializable {
 	@Id
 	@Column(name="roleid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getRoleID() {
-		return roleID;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRoleID(int roleID) {
-		this.roleID = roleID;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 
 	@Column(name="category", nullable=false)
@@ -97,8 +87,6 @@ public class Role implements Serializable {
 	}
 
 
-	}
-
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {
@@ -107,11 +95,12 @@ public class Role implements Serializable {
 
 	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
 		this.roleVacancies = roleVacancies;
-
 	}
 	
 
+
 	}
 
+
 	
-}
+

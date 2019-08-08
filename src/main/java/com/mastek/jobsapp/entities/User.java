@@ -23,7 +23,7 @@ public class User implements Serializable{
 	private String username;
 	private String password;
 	private String email;
-	private String passwordConfirm;
+
 	
 	@Id
 	@Column
@@ -53,16 +53,11 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	} 
+	
 	@Override
 	public String toString() {
 		return "User [getUserId()=" + getUserId() + ", getUsername()=" + getUsername() + ", getPassword()="
-				+ getPassword() + ", getEmail()=" + getEmail() + ", getPasswordConfirm()=" + getPasswordConfirm() + "]";
+				+ getPassword() + ", getEmail()=" + getEmail() + "]";
 	}
 	
 	
