@@ -21,7 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 <<<<<<< HEAD
 import javax.xml.bind.annotation.XmlRootElement;
-=======
+
 import javax.xml.bind.annotation.XmlTransient;
 >>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
