@@ -114,7 +114,7 @@ public class UserDetailsService {
 	//@Transactional
 	public List<User> findUserByEmail(@QueryParam("mail") String mail) {
 		try {
-			return userRepository.findByEmail(mail);
+			return userRepository.findByEmail(mail);//find by email
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
