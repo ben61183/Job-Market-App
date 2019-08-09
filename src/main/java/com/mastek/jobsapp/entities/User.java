@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,12 +23,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.ws.rs.Path;
 
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import javax.xml.bind.annotation.XmlTransient;
-
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
