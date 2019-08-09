@@ -1,6 +1,12 @@
 package com.mastek.jobsapp.entities;
+
+import java.io.Serializable;
+
+
+
 import java.io.Serializable;
 import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,6 +14,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.CascadeType;
 import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +37,7 @@ import org.springframework.context.annotation.Scope;
 @Table(name = "JPA_ROLE")
 @NamedQueries({
 	@NamedQuery(name="Role.findByCategory", // name = "<classname>.<queryname>"
-			query="select e from Role e where e.category = :cat") // query = "object_query"
+			query="select r from Role r where role_name like concat('%', :searchParam, '%')") // query = "object_query"
 })
 @XmlRootElement
 public class Role implements Serializable {
@@ -38,13 +45,15 @@ public class Role implements Serializable {
 	//ensure lower case 'd' in roleId
 	@Value("0")
 	private int roleId;
+	
 	@FormParam("category")
 	@Value("defult")
 	private String category;
+	
 	@FormParam("roleName")
 	@Value("defult")
-
 	private String roleName;
+
 
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
@@ -82,8 +91,6 @@ public class Role implements Serializable {
 	
 	}
 
-
-
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {
@@ -94,6 +101,7 @@ public class Role implements Serializable {
 		this.roleVacancies = roleVacancies;
 	}
 	
+
 
 	}
 

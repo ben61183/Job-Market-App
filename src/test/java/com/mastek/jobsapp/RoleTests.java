@@ -43,11 +43,15 @@ public class RoleTests {
 	
 
 
+
+
+
 //	@Test
 //	public void findByRoleId() {
 //		int roleid = 4; 
 //		assertNotNull(rolSer.findByRoleId(roleid));
 //	}
+
 
 	@Test
 	public void addNewRole() {
@@ -61,9 +65,7 @@ public class RoleTests {
 		role2.setRoleName("Python");
 		role2.setCategory("Cloud Services");
 		role2 = rolSer.registerOrUpdateRole(role2);
-
 		role2 = rolSer.registerOrUpdateRole(role2);
-		
 		assertNotNull(role1);
 	}
 
@@ -71,16 +73,14 @@ public class RoleTests {
 
 	@Test
 	public void findByRoleId() {
-
-		int roleid = 11; 
+		int roleid = 4; 
 		assertNotNull(rolSer.findByRoleId(roleid));
-
 	}
+	
 
 
 	// add back later
-	@Ignore
-	// add back later
+
 	@Test
 	public void deleteByRoleId() {
 		int roleid = 12; 
