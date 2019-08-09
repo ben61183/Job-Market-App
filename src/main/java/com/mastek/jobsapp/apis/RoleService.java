@@ -38,19 +38,20 @@ public class RoleService {
 	@Transactional
 	public Role registerOrUpdateRole(@BeanParam Role role) { // register or update a role 
 		Role currentRole = findByRoleId(role.getRoleId());
-
 		if (currentRole!=null) {
 			currentRole.setRoleName(role.getRoleName());
 			currentRole.setCategory(role.getCategory());
 			currentRole.setRoleVacancies(role.getRoleVacancies());
 			role = roleRepository.save(role);
+			System.out.println("Role Editied" + role);
 		} else {
 			role = roleRepository.save(role);
+			System.out.println("Role Registered " + role);
+
 		}
-		System.out.println("Role Registered " + role);		
-		role = roleRepository.save(role);
-		System.out.println("Role Registered " + role);
-		role = roleRepository.save(role);
+//		role = roleRepository.save(role);
+//		System.out.println("Role Registered " + role);
+//		role = roleRepository.save(role);
 		return role; 
 	}
 
