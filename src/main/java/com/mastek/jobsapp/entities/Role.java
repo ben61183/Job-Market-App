@@ -97,10 +97,4 @@ public class Role implements Serializable {
 	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
 		this.roleVacancies = roleVacancies;
 	}
-	
-
-
 }
-
-	
-

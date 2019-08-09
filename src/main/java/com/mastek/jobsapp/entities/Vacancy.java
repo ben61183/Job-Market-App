@@ -33,7 +33,6 @@ import org.springframework.stereotype.Component;
 	@XmlRootElement
 	public class Vacancy implements Serializable {
 		
-		
 			@Value("-1")
 			@FormParam("vacancyId")
 			private int vacancyId;
@@ -67,6 +66,8 @@ import org.springframework.stereotype.Component;
 			private int uploadYear; 
 			
 			private Role thisRole;
+			
+			private Company thisCompany;
 			
 			private Set<Skill> vacancySkills = new HashSet<>();
 			
@@ -211,5 +212,17 @@ import org.springframework.stereotype.Component;
 
 	public void setVacancyUsers(Set<User> vacancyUsers) {
 		this.vacancyUsers = vacancyUsers;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="fk_company")
+//	@XmlTransient
+	public Company getThisCompany() {
+		return thisCompany;
+	}
+
+	public void setThisCompany(Company thisCompany) {
+		this.thisCompany = thisCompany;
 	}	
+	
 }	
