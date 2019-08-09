@@ -43,13 +43,15 @@ public class RoleService {
 			currentRole.setCategory(role.getCategory());
 			currentRole.setRoleVacancies(role.getRoleVacancies());
 			role = roleRepository.save(role);
+			System.out.println("Role Editied" + role);
 		} else {
 			role = roleRepository.save(role);
+			System.out.println("Role Registered " + role);
+
 		}
-		System.out.println("Role Registered " + role);		
-		role = roleRepository.save(role);
-		System.out.println("Role Registered " + role);
-		role = roleRepository.save(role);
+//		role = roleRepository.save(role);
+//		System.out.println("Role Registered " + role);
+//		role = roleRepository.save(role);
 		return role; 
 	}
 

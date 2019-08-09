@@ -1,5 +1,9 @@
 package com.mastek.jobsapp.apis;
 
+
+
+import javax.transaction.Transactional;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -8,16 +12,31 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.secure.spi.GrantedPermission;
+
+
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+
+
 import com.mastek.jobsapp.entities.Skill;
 import com.mastek.jobsapp.entities.User;
 import com.mastek.jobsapp.entities.Vacancy;
@@ -48,15 +67,25 @@ public class UserDetailsService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional
-	public User registerAccountOrUpdate(User usr) {
-		usr= userRepository.save(usr);
-		System.out.println("User Registered"+usr);
+	public User registerAccountOrUpdate(@BeanParam User usr) {
+		User currentUser = findByUserId(usr.getUserId());
+		if (currentUser!=null) {
+			currentUser.setUsername(usr.getUsername());	
+			currentUser.setPassword(usr.getPassword());
+			currentUser.setEmail(usr.getEmail());
+			usr = userRepository.save(usr);
+		} else {
+			usr=userRepository.save(usr);
+	}
 		return usr;
 	}
 	
 	@Path("/find/{userId}")
 	@GET
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({ //declare all possible content types of return value
+		MediaType.APPLICATION_JSON, //object to be given in JSON format
+		MediaType.APPLICATION_XML //object to be given in XML
+	})
 	@Transactional
 	public User findByUserId(@PathParam("userId") int userId) {
 		try {
@@ -68,9 +97,39 @@ public class UserDetailsService {
 		}
 	}
 	
+	@Path("find/username/")
+	@GET
+	@Produces({ //declare all possible content types of return value
+		MediaType.APPLICATION_JSON, //object to be given in JSON format
+	})
+	//@Transactional
+	public List<User> findUserByUsername(@QueryParam("name") String name) {
+		try {
+			return userRepository.findByUsername(name);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Path("find/email/")
+	@GET
+	@Produces({ //declare all possible content types of return value
+		MediaType.APPLICATION_JSON, //object to be given in JSON format
+	})
+	//@Transactional
+	public List<User> findUserByEmail(@QueryParam("mail") String mail) {
+		try {
+			return userRepository.findByEmail(mail);//find by email
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@DELETE
 	@Path("delete/{userId}")
-	public void deleteByUserId(int userId) {
+	public void deleteByUserId(@PathParam("userId") int userId) {
 		userRepository.deleteById(userId);
 	}
 	

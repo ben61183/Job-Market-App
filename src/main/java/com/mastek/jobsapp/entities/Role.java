@@ -2,7 +2,6 @@ package com.mastek.jobsapp.entities;
 import java.io.Serializable;
 
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -94,9 +93,16 @@ public class Role implements Serializable {
 	public void setRoleVacancies(Set<Vacancy> roleVacancies) {
 		this.roleVacancies = roleVacancies;
 	}
+
+	@Override
+	public String toString() {
+		return "Role [roleId=" + roleId + ", category=" + category + ", roleName=" + roleName + ", roleVacancies="
+				+ roleVacancies + "]";
+	}
+	
+	
 	
 }
 
 
-	
 
