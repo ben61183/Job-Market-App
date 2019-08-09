@@ -1,5 +1,7 @@
 package com.mastek.jobsapp.entities;
 
+import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +17,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.ws.rs.Path;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
 import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.context.annotation.Scope;
@@ -24,12 +29,13 @@ import org.springframework.stereotype.Component;
 @Scope
 @Entity
 @Table(name="user")
-public class User {
+@XmlRootElement
+public class User implements Serializable{
 	private int userId;
 	private String username;
 	private String password;
 	private String email;
-	private String passwordConfirm;
+
 	
 	private Set<Skill> userSkills = new HashSet<>();
 	
@@ -44,6 +50,7 @@ public class User {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -62,16 +69,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	} 
+	
 	@Override
 	public String toString() {
 		return "User [getUserId()=" + getUserId() + ", getUsername()=" + getUsername() + ", getPassword()="
-				+ getPassword() + ", getEmail()=" + getEmail() + ", getPasswordConfirm()=" + getPasswordConfirm() + "]";
+				+ getPassword() + ", getEmail()=" + getEmail() + "]";
 	}
 	// user-skill
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // has cascade -> primary class. EAGER is not ideal

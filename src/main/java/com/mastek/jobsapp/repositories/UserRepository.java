@@ -7,5 +7,7 @@ import com.mastek.jobsapp.entities.User;
 
 @Component
 public interface UserRepository extends CrudRepository<User, Integer>{
+
+
 	
 }

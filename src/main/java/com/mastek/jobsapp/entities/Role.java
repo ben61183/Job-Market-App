@@ -1,13 +1,15 @@
 package com.mastek.jobsapp.entities;
 import java.io.Serializable;
+
+
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Set;
 import javax.persistence.CascadeType;
-import javax.persistence.CascadeType;
-import javax.persistence.CascadeType;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,8 +48,7 @@ public class Role implements Serializable {
 	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
-	
-	
+
 
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
@@ -96,7 +97,9 @@ public class Role implements Serializable {
 	}
 	
 
+
 	}
+
 
 	
 
