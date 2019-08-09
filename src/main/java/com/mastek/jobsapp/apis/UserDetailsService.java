@@ -91,6 +91,16 @@ public class UserDetailsService {
 		}
 	}
 	
+	@Transactional
+	@GET
+	@Path("/userlist/")
+	@Produces({MediaType.APPLICATION_JSON})
+	public Iterable<User> listAllUsers(){
+		//fetch all vacancies from table
+		return userRepository.findAll();
+	}
+
+	
 	@Path("find/username/")
 	@GET
 	@Produces({ //declare all possible content types of return value
