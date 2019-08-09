@@ -36,7 +36,6 @@ public class RoleService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // form data
 	@Produces(MediaType.APPLICATION_JSON) // json data
 	@Transactional
-
 	public Role registerOrUpdateRole(@BeanParam Role role) { // register or update a role 
 		Role currentRole = findByRoleId(role.getRoleId());
 		if (currentRole!=null) {

@@ -1,32 +1,23 @@
 package com.mastek.jobsapp.apis;
 
-<<<<<<< HEAD
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.secure.spi.GrantedPermission;
-=======
 import java.util.Set;
 
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.mastek.jobsapp.entities.Skill;
 import com.mastek.jobsapp.entities.User;
 import com.mastek.jobsapp.entities.Vacancy;
@@ -36,11 +27,7 @@ import com.mastek.jobsapp.repositories.UserRepository;
 
 @Component
 @Scope
-<<<<<<< HEAD
-@Path("/userdetails/")
-=======
 @Path("/user/")
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 public class UserDetailsService {
 	
 	@Autowired
@@ -67,13 +54,14 @@ public class UserDetailsService {
 		return usr;
 	}
 	
-	@Path("find/{userId}")
+	@Path("/find/{userId}")
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Transactional
-	public User findByUserId(int userId) {
+	public User findByUserId(@PathParam("userId") int userId) {
 		try {
-			return userRepository.findById(userId).get();
+			User use = userRepository.findById(userId).get();
+			return use; 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

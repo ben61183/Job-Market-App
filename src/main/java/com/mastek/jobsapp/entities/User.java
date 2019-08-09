@@ -1,14 +1,10 @@
 package com.mastek.jobsapp.entities;
-
-<<<<<<< HEAD
 import java.io.Serializable;
 
-=======
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,11 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-<<<<<<< HEAD
 import javax.xml.bind.annotation.XmlRootElement;
 
 import javax.xml.bind.annotation.XmlTransient;
->>>>>>> branch 'master' of https://github.com/ben61183/Job-Market-App.git
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

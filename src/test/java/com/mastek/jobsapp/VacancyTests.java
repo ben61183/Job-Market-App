@@ -105,9 +105,14 @@ public class VacancyTests {
 			
 			int n = random.nextInt(12);
 			n+=1; 
-			currentVac.setTitle(jobTitles[n]);
-			vacSer.assignRole(i, n);
-			currentVac = vacRepository.save(currentVac);	
+			Role currentRole = roleSer.findByRoleId(n);
+			// user to randomise the job titles 
+			//currentVac.setTitle(jobTitles[n]);
+			
+			// used to randomise the foreign keys 
+			currentRole = roleSer.registerOrUpdateRole(currentRole);
+			currentVac.setThisRole(currentRole);
+			currentVac = vacSer.registerOrUpdateVacancy(currentVac);
 		}
 	}
 	
