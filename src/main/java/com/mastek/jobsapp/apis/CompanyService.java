@@ -46,7 +46,8 @@ public class CompanyService {
 			currentCom.setCompanyName(company.getCompanyName());
 			currentCom.setHqLocation(company.getHqLocation());
 			currentCom.setLinkedIn(company.getLinkedIn());
-			
+			currentCom.setUsername(company.getUsername());
+			currentCom.setPassword(company.getPassword());
 			company=companyRep.save(company);
 		} else {
 			company=companyRep.save(company);

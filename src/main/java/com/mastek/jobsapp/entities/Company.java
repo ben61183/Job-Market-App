@@ -30,16 +30,24 @@ public class Company {
 	private int companyId;
 	
 	@FormParam("companyName")
-	@Value("defult")
+	@Value("default")
 	private String companyName;
 
 	@FormParam("hqLocation")
-	@Value("defult")
+	@Value("default")
 	private String hqLocation;
 	
 	@FormParam("linkedIn")
-	@Value("defult")
+	@Value("default")
 	private String linkedIn;
+	
+	@FormParam("companyUsername")
+	@Value("default")
+	private String username; 
+	
+	@FormParam("companyPassword")
+	@Value("default")
+	private String password; 
 	
 	private Set<Vacancy> companyVacancies = new HashSet<>();
 
@@ -54,7 +62,7 @@ public class Company {
 		this.companyId = companyId;
 	}
 
-	@Column(name="companyname",nullable=false)
+	@Column(name="companyName")
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -79,6 +87,24 @@ public class Company {
 
 	public void setLinkedIn(String linkedIn) {
 		this.linkedIn = linkedIn;
+	}
+	
+	@Column(nullable=false)
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Column(nullable=false)
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisCompany")
