@@ -10,7 +10,7 @@ import com.mastek.jobsapp.entities.User;
 
 @Service
 public class EmailService {
-	
+//	mail sender
 	private JavaMailSender javaMailSender;
 	
 	@Autowired
