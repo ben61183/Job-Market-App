@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.hibernate.secure.spi.GrantedPermission;
 
 
@@ -34,6 +36,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Component;
 
 
@@ -50,6 +53,8 @@ import com.mastek.jobsapp.repositories.UserRepository;
 @Path("/user/")
 public class UserDetailsService {
 	
+	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserDetailsService.class);
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -58,6 +63,9 @@ public class UserDetailsService {
 	
 	@Autowired
 	private VacancyService vacSer;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	public UserDetailsService() {
 		System.out.println("User Created");
@@ -71,13 +79,21 @@ public class UserDetailsService {
 	public User registerAccountOrUpdate(@BeanParam User usr) {
 		User currentUser = findByUserId(usr.getUserId());
 		if (currentUser!=null) {
+			//update an existing user 
 			currentUser.setUsername(usr.getUsername());	
 			currentUser.setPassword(usr.getPassword());
 			currentUser.setEmail(usr.getEmail());
 			usr = userRepository.save(usr);
 		} else {
 			usr=userRepository.save(usr);
-	}
+		
+			try {
+				emailService.welcomeEmail(usr);
+			} catch (MailException e) {
+				logger.info("Error Sending Email: " + e.getMessage() );
+				}
+			
+	}		
 		return usr;
 	}
 	
@@ -86,6 +102,7 @@ public class UserDetailsService {
 	@Produces({ //declare all possible content types of return value
 		MediaType.APPLICATION_JSON, //object to be given in JSON format
 		MediaType.APPLICATION_XML}) //object to be given in XML})
+	@Transactional
 	public User findByUserId(@PathParam("userId") int userId) {
 		try {
 			User use = userRepository.findById(userId).get();
