@@ -41,7 +41,7 @@ public class RoleService {
 		if (currentRole!=null) {
 			currentRole.setRoleName(role.getRoleName());
 			currentRole.setCategory(role.getCategory());
-			currentRole.setRoleVacancies(role.getRoleVacancies());
+			//currentRole.setRoleVacancies(role.getRoleVacancies());
 			role = roleRepository.save(role);
 			System.out.println("Role Editied" + role);
 		} else {
