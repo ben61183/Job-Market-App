@@ -36,27 +36,31 @@ import org.springframework.stereotype.Component;
 			@Value("-1")
 			@FormParam("vacancyId")
 			private int vacancyId;
+			
 			@Value("Default Vacancy Title")
 			@FormParam("title")
 			private String title;
+			
 			@Value("-1")
 			@FormParam("salary")
 			private int salary;
+			
 			@Value("Default Vacancy location")
 			@FormParam("location")
 			private String location;
+			
 			@Value("Default description")
 			@FormParam("description")
 			private String description;
-			@Value("Default company")
-			@FormParam("company")
-			private String company;
-			@Value("Default link")
+			
+			@Value("Default url")
 			@FormParam("link")
 			private String link;
+			
 			@Value("Default Time")
 			@FormParam("postTime")
 			private String postTime;
+			
 			@Value("true")
 			@FormParam("jobType")
 			private boolean jobType;
@@ -121,14 +125,6 @@ import org.springframework.stereotype.Component;
 		this.description = description;
 	}
 
-	@Column(name="company", nullable= false, length=45)
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
 
 	@Column(name="link", nullable= false, length=100)
 	public String getLink() {
@@ -186,7 +182,7 @@ import org.springframework.stereotype.Component;
 	public String toString() {
 		return "Vacancy [getVacancyId()=" + getVacancyId() + ", getTitle()=" + getTitle() + ", getSalary()="
 				+ getSalary() + ", getLocation()=" + getLocation() + ", getDescription()="
-				+ getDescription() + ", getCompany()=" + getCompany() + ", getLink()=" + getLink()
+				+ getDescription() + ", getLink()=" + getLink()
 				+ ", getPostTime()=" + getPostTime() + ", isJobType()=" + isJobType() + "]";
 	}
 	

@@ -107,7 +107,6 @@ public class RoleTests {
 		Vacancy vac= new Vacancy();
 		vac.setTitle("New Vacancy");
 		vac.setSalary(1000);
-		vac.setCompany("New Company");
 		vac.setDescription("new description");
 		vac.setJobType(true);
 		vac.setLink("www.sadas.com");

@@ -57,7 +57,6 @@ public class VacancyService {
 	public Vacancy registerOrUpdateVacancy(@BeanParam Vacancy job) {
 		Vacancy currentVac = findByVacanyId(job.getVacancyId());
 		if (currentVac!=null) {
-			currentVac.setCompany(job.getCompany());	
 			currentVac.setDescription(job.getDescription());
 			currentVac.setJobType(job.isJobType());
 			currentVac.setLink(job.getLink());
@@ -122,12 +121,13 @@ public class VacancyService {
 			Role rol = rolSer.findByRoleId(roleId);
 			vac.setThisRole(rol);
 			vac = registerOrUpdateVacancy(vac);
+			System.out.println("role assigned: "+vac.getThisRole().getRoleName()+"role id:"+vac.getThisRole().getRoleId()+"vac id:"+vac.getVacancyId());
 			return vac;
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-			
+		
 		}
 	
 	@Transactional
