@@ -66,6 +66,7 @@ public class VacancyService {
 			currentVac.setTitle(job.getTitle());
 			currentVac.setUploadYear(job.getUploadYear());
 			job = vacancyRepository.save(job);
+			
 		} else {
 			job=vacancyRepository.save(job);
 		}
@@ -81,7 +82,7 @@ public class VacancyService {
 		MediaType.APPLICATION_XML //object to be given in XML
 	})
 	@Transactional //to help fetch dependent data
-	public Vacancy findByVacanyId(@PathParam("vacancyId")int vacancyId) {
+	public Vacancy findByVacanyId(@PathParam("vacancyId") int vacancyId) {
 		try {
 			Vacancy vac = vacancyRepository.findById(vacancyId).get();
 			int count = vac.getVacancySkills().size();

@@ -41,6 +41,7 @@ import org.springframework.context.annotation.Scope;
 public class Role implements Serializable {
 	
 	//ensure lower case 'd' in roleId
+	@FormParam("roleId")
 	@Value("0")
 	private int roleId;
 	
