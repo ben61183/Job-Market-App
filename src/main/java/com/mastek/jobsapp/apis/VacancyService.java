@@ -128,7 +128,6 @@ public class VacancyService {
 			e.printStackTrace();
 			return null;
 		}
-		
 		}
 	
 	@Transactional
