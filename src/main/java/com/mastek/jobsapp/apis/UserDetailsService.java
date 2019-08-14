@@ -98,7 +98,8 @@ public class UserDetailsService {
 			User use = userRepository.findById(userId).get();
 			return use; 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("user not present.");
+//			e.printStackTrace();
 			return null;
 		}
 	}

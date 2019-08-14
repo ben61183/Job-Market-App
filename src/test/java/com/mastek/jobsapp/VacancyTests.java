@@ -68,7 +68,6 @@ public class VacancyTests {
 	@Test
 	public void addVacancyUsingService() {
 		Vacancy vac= new Vacancy();
-		vac.setVacancyId(10000);
 		vac.setTitle("New Vacancy");
 		vac.setSalary(1000);
 		vac.setDescription("new description");
@@ -83,14 +82,29 @@ public class VacancyTests {
 
 	@Test
 	public void assignRoleToVacancy() {
-		vacSer.assignRole(1, 10000);
-		assertNotNull(vacSer.findByVacanyId(10000).getThisRole());
+		vacSer.assignRole(1, 2);
+		assertNotNull(vacSer.findByVacanyId(2).getThisRole());
 	}
 	
 	@Test
 	public void findByVacancyById() {
 		int vacancyId = 2; 
 		assertNotNull(vacSer.findByVacanyId(vacancyId));
+	}
+	
+
+	@Test
+	public void addSkill() {
+		int vId = 5;
+		int sId = 1;
+		vacSer.assignSkill(vId, sId);
+		assertNotNull(vacSer.loadSkillsOfVacancy(vId));
+	}
+	
+	@Test
+	public void deleteVacancy() {
+		vacSer.deleteByVacancyId(300);
+		assertNull(vacSer.findByVacanyId(300));
 	}
 	
 //	@Test
@@ -116,21 +130,7 @@ public class VacancyTests {
 //		}
 //	}
 	
-	@Test
-	public void addSkill() {
-		int vId = 115;
-		int sId = 125;
-		vacSer.assignSkill(vId, sId);
-	}
-	
-	@Test
-	public void deleteVacancy() {
-		vacSer.deleteByVacancyId(10000);
-		assertNull(vacSer.findByVacanyId(10000));
-	}
-	
-//	@Test
-//	public void 
+
 
 }
 

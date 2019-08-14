@@ -20,21 +20,20 @@ public class UserTest {
 	@Autowired
 	UserDetailsService userDetailsService;
 	
-	
 	@Test
 	public void addAccountUsingService(){
 		User usr = new User();
 		usr.setUserId(10000);
 		usr.setUsername("bob123");
 		usr.setEmail("bob123@hotmail.com");
+		usr.setPassword("123");
 		usr = userDetailsService.registerAccountOrUpdate(usr);
 		assertNotNull(usr);
-	
 	}
 	
 	@Test
 	public void deleteByUserIdUsingService() {
-		int userId=4;
+		int userId=332;
 		userDetailsService.deleteByUserId(userId);
 		assertNull(userDetailsService.findByUserId(userId));
 	}
@@ -58,10 +57,13 @@ public class UserTest {
 		assertTrue(vacanciesPre>userDetailsService.findByUserId(1).getSavedVacancies().size());
 	}
 	
+	
 	@Test
 	public void deleteSkillFromUser() {
 		int skillsPre = userDetailsService.findByUserId(1).getUserSkills().size();
 		userDetailsService.deleteSkill(1,2);
+		System.out.println(skillsPre);
+		System.out.println(userDetailsService.findByUserId(1).getUserSkills().size());
 		assertTrue(skillsPre>userDetailsService.findByUserId(1).getUserSkills().size());
 	}
 	
