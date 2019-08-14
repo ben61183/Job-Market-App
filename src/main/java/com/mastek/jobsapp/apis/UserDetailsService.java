@@ -87,13 +87,13 @@ public class UserDetailsService {
 		} else {
 			usr=userRepository.save(usr);
 		
-			try {
-				emailService.welcomeEmail(usr);
-			} catch (MailException e) {
-				logger.info("Error Sending Email: " + e.getMessage() );
-				}
-			
-	}		
+		try {
+			emailService.userWelcomeEmail(usr);
+		} catch (MailException e) {
+			logger.info("Error Sending Email: " + e.getMessage());
+			}
+		}		
+		
 		return usr;
 	}
 	

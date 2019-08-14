@@ -14,12 +14,10 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Component;
 
-import com.mastek.jobsapp.repositories.VacancyRepository;
 import com.mastek.jobsapp.entities.Company;
-import com.mastek.jobsapp.entities.Role;
-import com.mastek.jobsapp.entities.Skill;
 import com.mastek.jobsapp.entities.Vacancy;
 import com.mastek.jobsapp.repositories.CompanyRepository;
 
@@ -28,12 +26,17 @@ import com.mastek.jobsapp.repositories.CompanyRepository;
 @Path("/company/")
 public class CompanyService {
 	
+	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserDetailsService.class);
+
+	
 	@Autowired
 	private VacancyService vacancyService;
 	
 	@Autowired
 	private CompanyRepository companyRep;
 	
+	@Autowired
+	private EmailService emailService;
 	
 	@POST // http method to send form data
 	@Path("/register") // url 
@@ -48,9 +51,15 @@ public class CompanyService {
 			currentCom.setLinkedIn(company.getLinkedIn());
 			currentCom.setUsername(company.getUsername());
 			currentCom.setPassword(company.getPassword());
+			currentCom.setEmail(company.getEmail());
 			company=companyRep.save(company);
 		} else {
 			company=companyRep.save(company);
+		try {
+			emailService.companyWelcomeEmail(company);} 
+		catch (MailException e) {
+			logger.info("Error Sending Email: " + e.getMessage());}
+			
 		}
 		return company;
 
@@ -118,7 +127,7 @@ public class CompanyService {
 	public Iterable<Vacancy> loadSkillsOfVacancy(@PathParam("companyId") int companyId){
 		Company com = findByCompanyId(companyId);
 		int count = com.getCompanyVacancies().size();
-		System.out.println("company vacancies count: "+count);
+		System.out.println("company vacancies count: " + count);
 		return com.getCompanyVacancies();
 	}
 }

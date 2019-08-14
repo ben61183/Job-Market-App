@@ -49,6 +49,10 @@ public class Company {
 	@Value("default")
 	private String password; 
 	
+	@FormParam("companyEmail")
+	@Value("default")
+	private String email; 
+	
 	private Set<Vacancy> companyVacancies = new HashSet<>();
 
 	@Id
@@ -105,6 +109,15 @@ public class Company {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Column(nullable=false, name="company_email")
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisCompany")

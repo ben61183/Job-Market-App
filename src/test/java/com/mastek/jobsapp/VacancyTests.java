@@ -95,14 +95,14 @@ public class VacancyTests {
 		String[] jobTitles = new String[20];
 			jobTitles[0] = ".NET Developer"; jobTitles[1] = "Java Developer"; jobTitles[2] = "C# Developer"; jobTitles[3] = "DevOps Engineer"; jobTitles[4] = "Front End Developer"; jobTitles[5] = "SQL Developer";
 			jobTitles[6] = "IT Engineer"; jobTitles[7] = "Full Stack Developer"; jobTitles[8] = "Web Developer"; jobTitles[9] = "PHP Developer"; jobTitles[10] = "JavaScript Developer"; jobTitles[11]="Infastructure Developer";
-			jobTitles[11] = "Network Engineer"; jobTitles[12] = "React Developer"; 
+			jobTitles[12] = "Network Engineer"; jobTitles[13] = "React Developer"; 
 			
-		Random random = new Random(); 
+		 
 			
 		for (int i = 1; i < 1001; i++) {
 			Vacancy currentVac = vacSer.findByVacanyId(i);
-			
-			int n = random.nextInt(12);
+			Random random = new Random();
+			int n = random.nextInt(13);
 			n+=1; 
 			Role currentRole = roleSer.findByRoleId(n);
 			// user to randomise the job titles 
