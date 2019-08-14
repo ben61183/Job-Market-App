@@ -95,14 +95,13 @@ public class User implements Serializable{
 		this.email = email;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "User [getUserId()=" + getUserId() + ", getUsername()=" + getUsername() + ", getPassword()="
 				+ getPassword() + ", getEmail()=" + getEmail() + "]";
 
 	}
+	
 	// user-skill
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // has cascade -> primary class. EAGER is not ideal
 	@JoinTable(name = "JPA_USERSKILLS", 
@@ -110,12 +109,12 @@ public class User implements Serializable{
 		inverseJoinColumns = @JoinColumn(name = "FK_SKILLID"))
 	public Set<Skill> getUserSkills() {
 		return userSkills;
+		
 	}
+	
 	public void setUserSkills(Set<Skill> userSkills) {
 		this.userSkills = userSkills;
 	}
-	
-	
 	
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER) // has cascade -> primary class
 	@JoinTable(name = "JPA_USERVACANCIES", 
@@ -124,9 +123,9 @@ public class User implements Serializable{
 	public Set<Vacancy> getSavedVacancies() {
 		return savedVacancies;
 	}
+	
 	public void setSavedVacancies(Set<Vacancy> savedJobs) {
 		this.savedVacancies = savedJobs;
-
 	}
 	
 	

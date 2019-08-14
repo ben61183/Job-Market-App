@@ -26,6 +26,7 @@ import org.springframework.context.annotation.Scope;
 @Table(name = "JPA_COMPANY")
 @XmlRootElement
 public class Company {
+	@FormParam("companyId")
 	@Value("0")
 	private int companyId;
 	
