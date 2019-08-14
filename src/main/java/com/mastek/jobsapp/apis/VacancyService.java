@@ -89,7 +89,8 @@ public class VacancyService {
 			System.out.println("vacancyskills count: "+count);
 			return vac;
 		}catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("vacancy not present.");
+//			e.printStackTrace();
 			//System.out.println("no vacancy found");
 			return null;
 		}

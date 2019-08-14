@@ -41,18 +41,6 @@ public class RoleTests {
 		System.out.println("Role Tests Loaded");
 	}
 	
-
-
-
-
-
-//	@Test
-//	public void findByRoleId() {
-//		int roleid = 4; 
-//		assertNotNull(rolSer.findByRoleId(roleid));
-//	}
-
-
 	@Test
 	public void addNewRole() {
 
@@ -65,29 +53,21 @@ public class RoleTests {
 		role2.setRoleName("Python");
 		role2.setCategory("Cloud Services");
 		role2 = rolSer.registerOrUpdateRole(role2);
-		role2 = rolSer.registerOrUpdateRole(role2);
 		assertNotNull(role1);
 	}
-
-
 
 	@Test
 	public void findByRoleId() {
 		int roleid = 4; 
 		assertNotNull(rolSer.findByRoleId(roleid));
 	}
-	
-
-
-	// add back later
 
 	@Test
 	public void deleteByRoleId() {
-		int roleid = 12; 
+		int roleid = 311; 
 		rolSer.deleteByRoleId(roleid);
 		//assertNull(rolSer.findByRoleId(roleid));
 	}
-
 
 	public void findByCat() {
 		List<Role> rolesOfCategory = rolSer.fetchRoleByCat("Test");
@@ -95,10 +75,8 @@ public class RoleTests {
 		assertTrue(rolesOfCategory.size()>0);
 	}
 
-	
-
 	@Test
-	public void assignRole() {
+	public void assignRoleToVacancy() {
 		Role role2 = new Role();
 		role2.setRoleName("java");
 		role2.setCategory("applications");
@@ -115,7 +93,7 @@ public class RoleTests {
 		vac.setThisRole(role2);
 		vac = vacSer.registerOrUpdateVacancy(vac);
 	}
+	
 
-
-	}
+}
 
