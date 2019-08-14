@@ -65,12 +65,10 @@ public class VacancyTests {
 	@Autowired
 	VacancyRepository vacRepository; 
 	
-	
-	
-	@Ignore
 	@Test
 	public void addVacancyUsingService() {
 		Vacancy vac= new Vacancy();
+		vac.setVacancyId(10000);
 		vac.setTitle("New Vacancy");
 		vac.setSalary(1000);
 		vac.setDescription("new description");
@@ -84,36 +82,39 @@ public class VacancyTests {
 	}
 
 	@Test
-	public void findByVacancyById() {
-		int vacancyId = 2; 
-		assertNotNull(vacSer.findByVacanyId(vacancyId));
-		
+	public void assignRoleToVacancy() {
+		vacSer.assignRole(1, 10000);
+		assertNotNull(vacSer.findByVacanyId(10000).getThisRole());
 	}
 	
 	@Test
-	public void updateJobTitle() {
-		String[] jobTitles = new String[20];
-			jobTitles[0] = ".NET Developer"; jobTitles[1] = "Java Developer"; jobTitles[2] = "C# Developer"; jobTitles[3] = "DevOps Engineer"; jobTitles[4] = "Front End Developer"; jobTitles[5] = "SQL Developer";
-			jobTitles[6] = "IT Engineer"; jobTitles[7] = "Full Stack Developer"; jobTitles[8] = "Web Developer"; jobTitles[9] = "PHP Developer"; jobTitles[10] = "JavaScript Developer"; jobTitles[11]="Infastructure Developer";
-			jobTitles[12] = "Network Engineer"; jobTitles[13] = "React Developer"; 
-			
-		 
-			
-		for (int i = 1; i < 1001; i++) {
-			Vacancy currentVac = vacSer.findByVacanyId(i);
-			Random random = new Random();
-			int n = random.nextInt(13);
-			n+=1; 
-			Role currentRole = roleSer.findByRoleId(n);
-			// user to randomise the job titles 
-			//currentVac.setTitle(jobTitles[n]);
-			
-			// used to randomise the foreign keys 
-			currentRole = roleSer.registerOrUpdateRole(currentRole);
-			currentVac.setThisRole(currentRole);
-			currentVac = vacSer.registerOrUpdateVacancy(currentVac);
-		}
+	public void findByVacancyById() {
+		int vacancyId = 2; 
+		assertNotNull(vacSer.findByVacanyId(vacancyId));
 	}
+	
+//	@Test
+//	public void updateJobTitle() {
+//		String[] jobTitles = new String[20];
+//			jobTitles[0] = ".NET Developer"; jobTitles[1] = "Java Developer"; jobTitles[2] = "C# Developer"; jobTitles[3] = "DevOps Engineer"; jobTitles[4] = "Front End Developer"; jobTitles[5] = "SQL Developer";
+//			jobTitles[6] = "IT Engineer"; jobTitles[7] = "Full Stack Developer"; jobTitles[8] = "Web Developer"; jobTitles[9] = "PHP Developer"; jobTitles[10] = "JavaScript Developer"; jobTitles[11]="Infastructure Developer";
+//			jobTitles[12] = "Network Engineer"; jobTitles[13] = "React Developer";
+//			
+//		for (int i = 1; i < 1001; i++) {
+//			Vacancy currentVac = vacSer.findByVacanyId(i);
+//			Random random = new Random();
+//			int n = random.nextInt(13);
+//			n+=1; 
+//			Role currentRole = roleSer.findByRoleId(n);
+//			// user to randomise the job titles 
+//			//currentVac.setTitle(jobTitles[n]);
+//			
+//			// used to randomise the foreign keys 
+//			currentRole = roleSer.registerOrUpdateRole(currentRole);
+//			currentVac.setThisRole(currentRole);
+//			currentVac = vacSer.registerOrUpdateVacancy(currentVac);
+//		}
+//	}
 	
 	@Test
 	public void addSkill() {
@@ -122,6 +123,14 @@ public class VacancyTests {
 		vacSer.assignSkill(vId, sId);
 	}
 	
+	@Test
+	public void deleteVacancy() {
+		vacSer.deleteByVacancyId(10000);
+		assertNull(vacSer.findByVacanyId(10000));
+	}
+	
+//	@Test
+//	public void 
 
 }
 
