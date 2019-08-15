@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 
-@Scope("prototype")
-@Entity
-@Table(name = "JPA_COMPANY")
+@Scope("prototype") // default scope
+@Entity // declare the component as an entity
+@Table(name = "JPA_COMPANY") // name of table in SQL
 @XmlRootElement
 public class Company {
 	@FormParam("companyId")
