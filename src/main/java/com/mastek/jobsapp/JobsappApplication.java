@@ -8,8 +8,6 @@ public class JobsappApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JobsappApplication.class, args);
-		// git tes
-		//Anthoy h
 	}
 
 }
