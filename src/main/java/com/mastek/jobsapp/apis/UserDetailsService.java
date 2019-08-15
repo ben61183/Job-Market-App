@@ -43,7 +43,7 @@ import com.mastek.jobsapp.repositories.UserRepository;
 @Path("/user/")
 public class UserDetailsService {
 	
-	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserDetailsService.class);
+//	private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserDetailsService.class);
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -80,7 +80,7 @@ public class UserDetailsService {
 		try {
 			emailService.userWelcomeEmail(usr);
 		} catch (MailException e) {
-			logger.info("Error Sending Email: " + e.getMessage());
+//			logger.info("Error Sending Email: " + e.getMessage());
 			}
 		}		
 		

@@ -112,7 +112,9 @@ public class User implements Serializable{
 		inverseJoinColumns = @JoinColumn(name = "FK_SKILLID"))
 	public Set<Skill> getUserSkills() {
 		return userSkills;
+		
 	}
+	
 	public void setUserSkills(Set<Skill> userSkills) {
 		this.userSkills = userSkills;
 	}
@@ -125,8 +127,8 @@ public class User implements Serializable{
 	public Set<Vacancy> getSavedVacancies() {
 		return savedVacancies;
 	}
+	
 	public void setSavedVacancies(Set<Vacancy> savedJobs) {
 		this.savedVacancies = savedJobs;
-
 	}
 }
