@@ -28,16 +28,19 @@ import org.springframework.context.annotation.Scope;
 @XmlRootElement
 public class Skill {
 
+	// id doesnt need form param
 	@Value("0")
 	private int skillId;
+	// form param for skill name
 	@FormParam("skill")
 	@Value("default")
 	private String skill;
-	
+	// many to many with vacancy
 	private Set<Vacancy> skillsOfVacancy = new HashSet<>();
-	
+	// many to many with user
 	private Set<User> skillsOfUser = new HashSet<>();
 	
+	// auto generated id for skillId
 	@Id
 	@Column(name="skillId")
 	@GeneratedValue
@@ -48,7 +51,7 @@ public class Skill {
 		this.skillId = skillId;
 	}
 	
-	@Column(name="skill",nullable=false)
+	@Column(name="skill",nullable=false) // declare name of column and not nullable
 	public String getSkill() {
 		return skill;
 	}
@@ -56,6 +59,7 @@ public class Skill {
 		this.skill = skill;
 	}
 	
+	// many to many relationship with vacancy
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy = "vacancySkills")
 	@XmlTransient
 	public Set<Vacancy> getSkillsOfVacancy() {
@@ -65,6 +69,7 @@ public class Skill {
 		this.skillsOfVacancy = skillsOfVacancy;
 	}
 	
+	// many to many relationship with user
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy = "userSkills")
 	@XmlTransient
 	public Set<User> getSkillsOfUser() {
@@ -73,6 +78,4 @@ public class Skill {
 	public void setSkillsOfUser(Set<User> skillsOfUser) {
 		this.skillsOfUser = skillsOfUser;
 	}
-	
-	
 }

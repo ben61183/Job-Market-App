@@ -9,10 +9,12 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.jobsapp.entities.User;
 
+// user repository for crud operations
 @Component
 public interface UserRepository extends CrudRepository<User, Integer>{
-
+// find user by username (unique)
 public List<User> findByUsername(@Param("name") String name);
+// find user by email adress (unique)
 public List<User> findByEmail(@Param("mail") String mail);
 	
 }

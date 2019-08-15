@@ -34,13 +34,13 @@ import com.mastek.jobsapp.repositories.VacancyRepository;
 @Scope("singleton")
 @Path("/vacancy/")
 public class VacancyService {
-		
+	// load vacancy resository for CRUD
 	@Autowired
 	private VacancyRepository vacancyRepository;
-
+	// access role services
 	@Autowired
 	private RoleService rolSer;
-	
+	// access skill services
 	@Autowired
 	private SkillService skiSer;
 
@@ -48,14 +48,16 @@ public class VacancyService {
 		System.out.println("Player Service Created");
 	}
 	
-	
+	// register a new vacancy and save to repository
 	@POST // http method to send form data
 	@Path("/register") // url 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) // consume form data
 	@Produces(MediaType.APPLICATION_JSON) // produce json data
 	@Transactional
 	public Vacancy registerOrUpdateVacancy(@BeanParam Vacancy job) {
+		// find vacancy by id in repository
 		Vacancy currentVac = findByVacanyId(job.getVacancyId());
+		// if vacancy doesnt exist, create new object and id
 		if (currentVac!=null) {
 			currentVac.setDescription(job.getDescription());
 			currentVac.setJobType(job.isJobType());
@@ -66,42 +68,42 @@ public class VacancyService {
 			currentVac.setTitle(job.getTitle());
 			currentVac.setUploadYear(job.getUploadYear());
 			job = vacancyRepository.save(job);
-			
+		// if vacacny exists, update details
 		} else {
 			job=vacancyRepository.save(job);
 		}
-		
 		System.out.println("Vacancy" + job);
 		return job;
 	}
 	
+	// find a vacancy by passing id as path param
 	@Path("/find/{vacancyId}")
 	@GET //HTTP Method used to call the api
 	@Produces({ //declare all possible content types of return value
 		MediaType.APPLICATION_JSON, //object to be given in JSON format
 		MediaType.APPLICATION_XML //object to be given in XML
 	})
-	@Transactional //to help fetch dependent data
+	@Transactional // to fetch dependent data
 	public Vacancy findByVacanyId(@PathParam("vacancyId") int vacancyId) {
 		try {
 			Vacancy vac = vacancyRepository.findById(vacancyId).get();
-			int count = vac.getVacancySkills().size();
+			int count = vac.getVacancySkills().size(); // initialize many to many relationship
 			System.out.println("vacancyskills count: "+count);
 			return vac;
 		}catch (Exception e) {
 			System.out.println("vacancy not present.");
-//			e.printStackTrace();
-			//System.out.println("no vacancy found");
 			return null;
 		}
 	}
 
+	// delete a vacancy by passing path param
 	@DELETE //delete http method
 	@Path("/delete/{vacancyId}")
 	public void deleteByVacancyId(@PathParam("vacancyId") int vacancyId) {
 		vacancyRepository.deleteById(vacancyId);
 	}
 
+	// list all vacancies
 	@Transactional
 	@GET
 	@Path("/list")
@@ -111,7 +113,7 @@ public class VacancyService {
 		return vacancyRepository.findAll();
 	}
 
-	
+	// assign a role to a vacancy
 	@Transactional
 	@POST
 	@Path("/assign/role")
@@ -131,6 +133,7 @@ public class VacancyService {
 		}
 		}
 	
+	// assign a skill to a vacancy by passign form params
 	@Transactional
 	@POST
 	@Path("/assign/skill")
@@ -141,8 +144,8 @@ public class VacancyService {
 			// fetch entities to be associated
 			Vacancy v = findByVacanyId(vacancyId);
 			Skill s = skiSer.findBySkillId(skillId);
-			// manage the association
-			v.getVacancySkills().add(s); // one assigned with many
+			// manage the vacancy-skill association
+			v.getVacancySkills().add(s);
 			v = registerOrUpdateVacancy(v);
 			return v.getVacancySkills();
 		} catch(Exception e) {
@@ -151,16 +154,15 @@ public class VacancyService {
 		}
 	}
 	
+	// load skills of a vacancy
 	@GET
 	@Path("/theseskills/{vacancyId}")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Transactional
 	public Iterable<Skill> loadSkillsOfVacancy(@PathParam("vacancyId") int vacancyId){
 		Vacancy vac = findByVacanyId(vacancyId);
-		int count = vac.getVacancySkills().size();
+		int count = vac.getVacancySkills().size(); // initialize many to many 
 		System.out.println("vacancyskills count: "+count);
 		return vac.getVacancySkills();
 	}
 }
-
-

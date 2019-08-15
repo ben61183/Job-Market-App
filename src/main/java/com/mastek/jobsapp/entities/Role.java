@@ -30,36 +30,37 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 
-@Scope("prototype")
-@Entity
+@Scope("prototype") // default scope
+@Entity // declate role as an entity
 @Table(name = "JPA_ROLE")
-@NamedQueries({
+@NamedQueries({ // named query to find by category
 	@NamedQuery(name="Role.findByCategory", // name = "<classname>.<queryname>"
 			query="select r from Role r where role_name like concat('%', :searchParam, '%')") // query = "object_query"
 })
 @XmlRootElement
 public class Role implements Serializable {
 	
-	//ensure lower case 'd' in roleId
+	// form param for id
 	@FormParam("roleId")
 	@Value("0")
 	private int roleId;
-	
+	// form param for category
 	@FormParam("category")
 	@Value("defult")
 	private String category;
-	
+	// form param for role title
 	@FormParam("roleName")
 	@Value("defult")
 	private String roleName;
 
-
+	// vacancy object
 	private Set<Vacancy> roleVacancies = new HashSet<>();
 	
 	public Role() {
 		System.out.println("new role created");
 	}
 
+	// auto generate the roleId
 	@Id
 	@Column(name="roleid")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -90,6 +91,7 @@ public class Role implements Serializable {
 	
 	}
 
+	// one to many with vacancy
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL, mappedBy="thisRole")
 	@XmlTransient // ignore the collections while using API
 	public Set<Vacancy> getRoleVacancies() {
@@ -105,9 +107,6 @@ public class Role implements Serializable {
 		return "Role [roleId=" + roleId + ", category=" + category + ", roleName=" + roleName + ", roleVacancies="
 				+ roleVacancies + "]";
 	}
-	
-	
-	
 }
 
 
